@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
-  @products = Product.where(user_id: current_user.id || current_user.following.ids)
-
+  def index
+    @products = Product.where(list_id: List.where(user: current_user.following).or(List.where(user: current_user)))
+  end
 end
