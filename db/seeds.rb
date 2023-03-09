@@ -85,7 +85,9 @@ files = [
   URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678248287/favolist/app%20assets/product%20images/nomatic/2_om7ibb.webp"),
   URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678248288/favolist/app%20assets/product%20images/nomatic/7_avpl4s.webp")
 ]
+logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678265282/favolist/app%20assets/product%20images/nomatic/Nomatic_Black_jvzodf.webp")
 nomatic.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+nomatic.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
 nomatic.save!
 
 

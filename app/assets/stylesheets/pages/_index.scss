@@ -1,2 +1,50 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.product-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.1em;
+  flex-direction: column;
+  background-color: white;
+
+  h5 {
+    margin: 0;
+    font-weight: 700px;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 200;
+  }
+}
+
+
+.review-box {
+  --review-box-background: #f9f9f9;
+  --review-box-text: #333;
+  --review-box-base: 1.2;
+  background-color: var(--review-box-background);
+  color: var(--review-box-text);
+  font-size: calc(1rem * var(--review-box-base));
+  line-height: var(--review-box-base);
+  max-width: 35ch;
+  padding: calc(1rem * var(--review-box-base));
+
+  p {
+    max-height: calc(4rem * var(--review-box-base));
+    overflow: hidden;
+    position: relative;
+
+    &:after {
+      content: "";
+      background: linear-gradient(to right, transparent, var(--review-box-background) 80%);
+      display: block;
+      height: calc(1rem * var(--review-box-base) + 1px);
+      inset-block-end: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}

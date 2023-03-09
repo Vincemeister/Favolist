@@ -1,7 +1,11 @@
-<h1>Homefeed</h1>
-
 <% @products.each do |product| %>
   <div class="product">
     <%= render "shared/product", product: product %>
+
+    <div class="review-box">
+      <p>
+        <%= product.review %>
+      </p>
+    </div>
   </div>
 <% end %>
