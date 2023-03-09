@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+    @lists = @user.lists
+  end
+
   private
 
   def set_user
