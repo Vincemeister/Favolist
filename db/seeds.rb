@@ -18,7 +18,15 @@ Product.destroy_all
 puts "Creating vince, ava and 3 random users..."
 
 vinc = User.create(username: "vinc", email: "vr@gmail.com", password: "password")
+avatar_vinc = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678342734/avatars/Linkedin_3_asp0qi.jpg")
+vinc.avatar.attach(io: avatar_vinc, filename: 'vinc.jpg', content_type: 'image/jpg')
+vinc.save!
+
 ava = User.create(username: "ava", email: "ah@gmail.com", password: "password" )
+avatar_ava = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678342666/avatars/ava_s7jzz7.jpg")
+ava.avatar.attach(io: avatar_ava, filename: 'ava.jpg', content_type: 'image/jpg')
+ava.save!
+
 chris = User.create(username: "chris", email: "cs@gmail.com", password: "password" )
 
 3.times do
