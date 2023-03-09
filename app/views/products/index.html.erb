@@ -1,6 +1,7 @@
 <% @products.each do |product| %>
   <div class="product">
-    <%= render "shared/product", product: product %>
+    <%= render "shared/product", locals: { product: product, button_class: 'btn btn-main', link_url: product_path(product), link_label: "Read More" } %>
+
 
     <div class="review-box">
       <p>

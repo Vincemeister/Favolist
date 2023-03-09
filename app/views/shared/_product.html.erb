@@ -37,8 +37,8 @@
       <i class="fa-light fa-plus fa-lg"></i>
     </div>
     <%= cl_image_tag product.logo.key, crop: :fill, class: "logo" %>
-  <%= link_to "Read More", product_path(product), class: "btn btn-main"  %>
-  </div>
+  <%= link_to locals[:link_label], locals[:link_url], class: locals[:button_class] %>
 
+  </div>
 
 </div>
