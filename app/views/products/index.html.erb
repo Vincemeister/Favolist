@@ -7,12 +7,11 @@
     </div>
     <%= render "shared/product", product: product, locals: { button_class: 'btn btn-main', link_url: product_path(product), link_label: "Read More" } %>
     <div class="review-box">
-    <div class="text-container">
-      <p>
-        <%= product.review %>
-      </p>
-
+      <div class="text-container">
+        <p>
+          <%= product.review %>
+        </p>
+      </div>
     </div>
-    </div>
-<% end %>
+  <% end %>
 </div>

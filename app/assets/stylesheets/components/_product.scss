@@ -1,14 +1,15 @@
-// .product {
-//   .logo {
-//     max-height: 40px;
-//     max-width: 120px;
-//     width: 100%;
-//   }
+.product {
+  .logo {
+    max-height: 40px;
+    max-width: 120px;
+    object-fit: contain;
+  }
 
-.product-bar {
-  background-color: white
+  .product-bar {
+    background-color: white;
+  }
+
 }
-
 
 
 //   .product-bar {
