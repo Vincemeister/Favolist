@@ -1,5 +1,16 @@
 // Import page-specific CSS files here.
 @import "home";
+@import "product_show";
+
+.feed-container {
+  height: 100vh;
+}
+
+
+.product-info-bar {
+  font-weight: 300;
+  background-color: white;
+}
 
 .product-header {
   display: flex;
@@ -16,35 +27,55 @@
 
   p {
     margin: 0;
-    font-weight: 200;
+    font-weight: 300;
   }
 }
 
 
+// .review-box {
+//   height: 390px;
+//   padding: 10px;
+//   overflow: hidden;
+//   display: -webkit-box;
+//   -webkit-box-orient: vertical;
+//   -webkit-line-clamp: 3;
+//   text-overflow: ellipsis;
+//   white-space: normal;
+// }
+
+// .review-box p {
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+
+
+
+
 .review-box {
-  --review-box-background: #f9f9f9;
-  --review-box-text: #333;
-  --review-box-base: 1.2;
-  background-color: var(--review-box-background);
-  color: var(--review-box-text);
-  font-size: calc(1rem * var(--review-box-base));
-  line-height: var(--review-box-base);
-  max-width: 35ch;
-  padding: calc(1rem * var(--review-box-base));
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 10px 10px 10px; /* Adds 20px padding on the left */
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px; /* Optional: Add some space between review boxes */
+  background-color: white;
 
   p {
-    max-height: calc(4rem * var(--review-box-base));
+    margin: 0; /* Reset the default margin */
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    position: relative;
-
-    &:after {
-      content: "";
-      background: linear-gradient(to right, transparent, var(--review-box-background) 80%);
-      display: block;
-      height: calc(1rem * var(--review-box-base) + 1px);
-      inset-block-end: 0;
-      position: absolute;
-      width: 100%;
-    }
+    text-overflow: ellipsis;
+    font-weight: 300;
   }
+}
+
+.text-container {
+  padding-left: 20px; /* Adds 20px padding on the left for the text */
 }

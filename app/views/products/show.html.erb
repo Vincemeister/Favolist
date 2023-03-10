@@ -20,17 +20,17 @@
 
 
 <div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+  <div class="tab-pane fade show active product-content" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
     <p>
       <%= @product.review %>
     </p>
   </div>
-  <div class="tab-pane fade" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+  <div class="tab-pane fade product-content" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
     <p>
       <%= @product.description %>
     </p>
   </div>
-  <div class="tab-pane fade" id="pills-referrals" role="tabpanel" aria-labelledby="pills-referrals-tab">
+  <div class="tab-pane fade product-content" id="pills-referrals" role="tabpanel" aria-labelledby="pills-referrals-tab">
     <%= @product.referrals %>
   </div>
 </div>

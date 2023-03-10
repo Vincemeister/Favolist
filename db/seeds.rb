@@ -28,8 +28,12 @@ ava.avatar.attach(io: avatar_ava, filename: 'ava.jpg', content_type: 'image/jpg'
 ava.save!
 
 chris = User.create(username: "chris", email: "cs@gmail.com", password: "password" )
+avatar_chris = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678430825/avatars/crhis_skk7j0.png")
+chris.avatar.attach(io: avatar_chris, filename: 'ava.jpg', content_type: 'image/jpg')
+chris.save!
 
 3.times do
+  avatar = URI.open("https://source.unsplash.com/random/?profile")
   User.create(username: Faker::Name.name, email: Faker::Internet.email, password: "password")
 end
 
@@ -47,7 +51,8 @@ puts "Creating 3 lists..."
 
 sleep_enhancers = List.create(title: "Sleep Enhancers", user_id: vinc.id)
 travel_gear = List.create(title: "Travel Gear", user_id: vinc.id)
-alcohol_alternatives = List.create(title: "Alcohol Alternatives", user_id: ava.id)
+every_day_saviors = List.create(title: "Every Day Saviors", user_id: ava.id)
+functional_apparel = List.create(title: "Functional Apparel", user_id: chris.id)
 
 
 ############################# Products #############################
@@ -99,4 +104,50 @@ nomatic.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
 nomatic.save!
 
 
-#Nomatic Backpack
+#Manta Sleep Mask
+
+manta = Product.create(
+  list: every_day_saviors,
+  title: "Manta Sleep Mask",
+  price: 57,
+  review: "This sleep mask is the best I’ve ever used. I’ve tried a few different ones and this one is the most comfortable."
+)
+files = [
+  URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678429148/favolist/app%20assets/product%20images/manta/manta_mma3bu.webp"),
+]
+logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678429180/favolist/app%20assets/product%20images/manta/manta_logo_b40jnq.png")
+manta.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+manta.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+manta.save!
+
+
+#Baubax Travel Jacket 3.0
+baubax = Product.create(
+  list: functional_apparel,
+  title: "Baubax Travel Jacket 3.0",
+  price: 120,
+  review: "I love this jacket. It’s so comfortable and has so many pockets. I love the fact that it has a pocket for my"
+)
+files = [
+  URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678429214/favolist/app%20assets/product%20images/baubax/baubax_beige_bmu27g.webp"),
+]
+logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678429247/favolist/app%20assets/product%20images/baubax/baubax_logo_kitigw.png")
+baubax.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+baubax.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+baubax.save!
+
+
+#Apple AirTag
+apple = Product.create(
+  list: every_day_saviors,
+  title: "Apple AirTag",
+  price: 120,
+  review: "I'm a professional loser. I've lost my keys, wallet, phone, and passport. I've lost my luggage. I've lost my"
+)
+files = [
+  URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678429316/favolist/app%20assets/product%20images/apple/apple_air_tag_nslh0x.jpg"),
+]
+logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678429315/favolist/app%20assets/product%20images/apple/apple_logo_b0jlyn.webp")
+apple.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+apple.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+apple.save!

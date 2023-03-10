@@ -1,7 +1,22 @@
 <div class="container">
+
+  <div class="profile-box d-flex flex-direction-column align-content-center justify-content-center">
+    <div>
+      <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-large" %>
+    </div>
+    <div>
+      <h5><%= @user.username %></h5>
+      <p><%= @user.lists.count %> lists • <%= @user.products.count %> products</p></p>
+      <p> <%= @user.followers.count %> followers </p>
+    </div>
+
+  </div>
+
+
   <% @lists.each do |list| %>
     <div class="list-banner py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-      <%= list.title %>
+      <h4><%= list.title %></h4>
+      <p><%= list.products.count %> products</p>
     </div>
   <% end %>
 </div>
