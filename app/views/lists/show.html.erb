@@ -1,0 +1,11 @@
+  <div class="profile-box d-flex flex-direction-column align-content-center justify-content-center">
+    <div>
+      <%= cl_image_tag @list.user.avatar.key, crop: "fill", gravity: "center", class: "avatar-large" %>
+    </div>
+    <div>
+      <h5><%= @list.user.username %></h5>
+      <p><%= @list.products.count %> products</p></p>
+    </div>
+  </div>
+
+<%= render "shared/products", products: @list.products %>
