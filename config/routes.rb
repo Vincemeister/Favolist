@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     member do
       post :follow
       post :unfollow
+      post :remove_follower
     end
 
+    get :follows, on: :member
   end
 
   resources :lists, only: [:show]

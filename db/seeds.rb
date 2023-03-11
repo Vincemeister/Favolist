@@ -34,7 +34,8 @@ chris.save!
 
 3.times do
   avatar = URI.open("https://source.unsplash.com/random/?profile")
-  User.create(username: Faker::Name.name, email: Faker::Internet.email, password: "password")
+  user = User.create(username: Faker::Name.name, email: Faker::Internet.email, password: "password")
+  user.avatar.attach(io: avatar, filename: 'avatar.jpg', content_type: 'image/jpg')
 end
 
 

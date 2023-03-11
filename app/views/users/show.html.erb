@@ -7,7 +7,14 @@
     <div>
       <h5><%= @user.username %></h5>
       <p><%= @user.lists.count %> lists • <%= @user.products.count %> products</p></p>
-      <p> <%= @user.followers.count %> followers </p>
+
+      <%= link_to follows_user_path(@user)do%>
+        <p> <%= @user.followers.count %> followers </p>
+      <% end %>
+
+      <%= link_to follows_user_path(@user) do%>
+        <p> <%= @user.following.count %> following </p>
+      <% end %>
     </div>
   </div>
 

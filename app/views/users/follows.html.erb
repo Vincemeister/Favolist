@@ -1,0 +1,65 @@
+<h1>Followers</h1>
+
+<% if @user == current_user %>
+  <% @followers.each do |user| %>
+    <div class="follow-bar d-flex">
+      <%= link_to user_path(user), class: "d-flex flex-grow-1" do%>
+        <div class="follow-bar__content-container d-flex">
+          <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
+          <div class="follow-bar__user-name-and-product-count d-flex flex-column">
+            <%= user.username %>
+            <p><%= user.lists.count %> lists • <%= user.products.count %> products</p></p>
+          </div>
+        </div>
+      <% end %>
+      <%= button_to 'Remove', remove_follower_user_path(user), method: :post %>
+    </div>
+  <% end %>
+
+
+
+
+
+
+
+<% else %>
+  <% @followers.each do |user| %>
+    <div class="follow-bar d-flex">
+      <%= link_to user_path(user), class: "d-flex flex-grow-1" do%>
+        <div class="follow-bar__content-container d-flex">
+          <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
+          <div class="follow-bar__user-name-and-product-count d-flex flex-column">
+            <%= user.username %>
+            <p><%= user.lists.count %> lists • <%= user.products.count %> products</p></p>
+          </div>
+        </div>
+      <% end %>
+      <% if current_user.is_following?(user.id) %>
+        <%= button_to 'Followed', unfollow_user_path(user), method: :post %>
+      <% else %>
+        <%= button_to 'Follow', follow_user_path(user), method: :post %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+
+<h1>Following</h1>
+<% @following.each do |user| %>
+  <div class="follow-bar d-flex">
+    <%= link_to user_path(user), class: "d-flex flex-grow-1" do%>
+      <div class="follow-bar__content-container d-flex">
+        <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
+        <div class="follow-bar__user-name-and-product-count d-flex flex-column">
+          <%= user.username %>
+          <p><%= user.lists.count %> lists • <%= user.products.count %> products</p></p>
+        </div>
+      </div>
+    <% end %>
+    <% if current_user.is_following?(user.id) %>
+      <%= button_to 'Followed', unfollow_user_path(user), method: :post %>
+    <% else %>
+      <%= button_to 'Follow', follow_user_path(user), method: :post %>
+    <% end %>
+  </div>
+<% end %>
