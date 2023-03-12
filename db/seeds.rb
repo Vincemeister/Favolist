@@ -15,36 +15,65 @@ List.destroy_all
 Product.destroy_all
 
 
-puts "Creating vince, ava and 3 random users..."
+puts "Creating vince, ava, chris"
+
+main_users = []
 
 vinc = User.create(username: "Vinc", email: "vr@gmail.com", password: "password")
 avatar_vinc = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678342734/avatars/Linkedin_3_asp0qi.jpg")
 vinc.avatar.attach(io: avatar_vinc, filename: 'vinc.jpg', content_type: 'image/jpg')
 vinc.save!
+main_users << vinc
 
 ava = User.create(username: "Ava", email: "ah@gmail.com", password: "password" )
 avatar_ava = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678342666/avatars/ava_s7jzz7.jpg")
 ava.avatar.attach(io: avatar_ava, filename: 'ava.jpg', content_type: 'image/jpg')
 ava.save!
+main_users << ava
 
 chris = User.create(username: "Chris", email: "cs@gmail.com", password: "password" )
 avatar_chris = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678430825/avatars/crhis_skk7j0.png")
 chris.avatar.attach(io: avatar_chris, filename: 'ava.jpg', content_type: 'image/jpg')
 chris.save!
+main_users << chris
 
-3.times do
+puts "Creating 20 random users"
+
+random_users = []
+
+20.times do
   avatar = URI.open("https://source.unsplash.com/random/?profile")
-  user = User.create(username: Faker::Name.name, email: Faker::Internet.email, password: "password")
+  user = User.create(username: Faker::Name.first_name, email: Faker::Internet.email, password: "password")
   user.avatar.attach(io: avatar, filename: 'avatar.jpg', content_type: 'image/jpg')
+  random_users << user
 end
 
 
-puts "Establishing 4 followships..."
+puts "Establishing 3 main followships..."
 
 Follow.create(follower_id: vinc.id, following_id: ava.id)
 Follow.create(follower_id: ava.id, following_id: vinc.id)
 Follow.create(follower_id: vinc.id, following_id: chris.id)
-Follow.create(follower_id: vinc.id, following_id: User.last.id)
+
+puts "Establishing 40 random followships..."
+random_users.each do |user|
+  used_following_ids = [] # Empty array to keep track of used following IDs
+  num_followings = rand(1..3) # Generate a random number of followings for each user
+
+  num_followings.times do
+    following_id = main_users.sample.id # Generate a random following ID
+    while used_following_ids.include?(following_id) # Check if the ID has been used before
+      following_id = main_users.sample.id # Generate a new ID if it has
+    end
+
+    Follow.create(follower_id: user.id, following_id: following_id) # Create the follow relationship
+    used_following_ids << following_id # Add the ID to the used_following_ids array
+  end
+end
+
+
+
+
 
 
 puts "Creating 3 lists..."
@@ -155,3 +184,8 @@ logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678435291/f
 apple.photos.attach(files.map { |f| { io: f, filename: "image.png", content_type: "image/png" } })
 apple.logo.attach(io: logo, filename: "image.jpg", content_type: "image/png")
 apple.save!
+
+
+
+
+puts "SEEDING COMPLETE!"

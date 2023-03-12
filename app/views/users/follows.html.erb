@@ -7,21 +7,20 @@
         <div class="follow-bar__content-container d-flex">
           <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
           <div class="follow-bar__user-name-and-product-count d-flex flex-column">
-            <%= user.username %>
+            <div class="user-name-and-follow-link d-flex">
+              <%= user.username %>
+              <% if user.is_following?(current_user.id) %>
+                <%= button_to 'Follow', follow_user_path(user), method: :post, class: "small-follow" %>
+              <% end %>
+            </div>
+
             <p><%= user.lists.count %> lists • <%= user.products.count %> products</p></p>
           </div>
         </div>
       <% end %>
-      <%= button_to 'Remove', remove_follower_user_path(user), method: :post %>
+      <%= button_to 'Remove', remove_follower_user_path(user), method: :post, class: "btn btn-gray" %>
     </div>
   <% end %>
-
-
-
-
-
-
-
 <% else %>
   <% @followers.each do |user| %>
     <div class="follow-bar d-flex">
@@ -30,14 +29,17 @@
           <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
           <div class="follow-bar__user-name-and-product-count d-flex flex-column">
             <%= user.username %>
+
             <p><%= user.lists.count %> lists • <%= user.products.count %> products</p></p>
           </div>
         </div>
       <% end %>
       <% if current_user.is_following?(user.id) %>
-        <%= button_to 'Followed', unfollow_user_path(user), method: :post %>
+        <%= button_to 'Followed', unfollow_user_path(user), method: :post, class: "btn btn-main" %>
+      <% elsif user.is_following?(current_user.id) %>
+        <%= button_to 'Follow Back', follow_user_path(user), method: :post, class: "btn btn-pink" %>
       <% else %>
-        <%= button_to 'Follow', follow_user_path(user), method: :post %>
+        <%= button_to 'Follow', follow_user_path(user), method: :post, class: "btn btn-pink" %>
       <% end %>
     </div>
   <% end %>
