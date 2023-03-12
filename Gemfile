@@ -57,6 +57,10 @@ gem "simple_form", github: "heartcombo/simple_form"
 
 gem "cloudinary"
 gem "faker"
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+gem "pg_search"
+
 
 
 group :development, :test do
