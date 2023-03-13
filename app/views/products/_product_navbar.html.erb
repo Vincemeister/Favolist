@@ -1,0 +1,14 @@
+<div class="container navbar justify-content-center align-items-center py-2 border-bottom ">
+
+  <%= form_with url: products_path, method: :get, class: "d-flex search-bar w-100 mx-4" do %>
+    <div class="form-control search-input">
+      <%= text_field_tag :query,
+        params[:query],
+        placeholder: "Search products..."
+      %>
+      <%= button_tag type="submit", class: do %>
+        <i class="fa-light fa-search fa-lg"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -3,4 +3,9 @@
   bottom: 0;
   background-color: white;
   z-index: 999;
+
+  a {
+    color: $my-dark;
+    text-decoration: none;
+  }
 }

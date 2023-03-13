@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.where(list_id: List.where(user: current_user.following).or(List.where(user: current_user)))
+    if params[:query].present?
+      @products = Product.search_by_title_and_description_and_list_title_and_user_username(params[:query])
+    else
+      @products = Product.where(list_id: List.where(user: current_user.following).or(List.where(user: current_user)))
+    end
   end
 
   def show

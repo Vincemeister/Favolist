@@ -1,30 +1,58 @@
-<div class="container">
 
-  <div class="profile-box d-flex flex-direction-column align-content-center justify-content-center">
-    <div>
-      <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-large" %>
-    </div>
-    <div>
-      <h5><%= @user.username %></h5>
-      <p><%= @user.lists.count %> lists • <%= @user.products.count %> products</p></p>
 
-      <%= link_to follows_user_path(@user)do%>
-        <p> <%= @user.followers.count %> followers </p>
-      <% end %>
-
-      <%= link_to follows_user_path(@user) do%>
-        <p> <%= @user.following.count %> following </p>
-      <% end %>
+<div class="container w-100 bg-white user-container">
+  <div class="profile-box d-flex flex-col align-content-center justify-content-center w-100 mx-auto bg-white py-3">
+    <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-xl align-self-center" %>
+    <div class="header-text-follow-button w-100 my-1 ml-3">
+      <div class="header-and-follow-button d-flex justify-content-between align-items-bottom">
+        <h3 class="align-self-end m-0 "><%= @user.username %></h3>
+        <% if current_user != @user %>
+          <% if current_user.is_following?(@user) %>
+            <%= link_to unfollow_user_path(@user), method: :delete do %>
+              <button class="btn btn-main">Followed</button>
+            <% end %>
+          <% else %>
+            <%= link_to follow_user_path(@user), method: :post do %>
+              <button class="btn btn-pink">Follow</button>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="text">
+        <p>
+          <%= @user.lists.count %> lists • <%= @user.products.count %> products<br>
+          <%= link_to follows_user_path(@user), class: "text-decoration-none text-body" do %>
+            <%= @user.followers.count %> followers • <%= @user.following.count %> following
+          <% end %>
+        </p>
+      </div>
     </div>
   </div>
 
-
   <% @lists.each do |list| %>
-  <%= link_to list_path(list) do %>
-      <div class="list-banner py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-        <h4><%= list.title %></h4>
-        <p><%= list.products.count %> products</p>
+    <%= link_to list_path(list), class: "text-decoration-none" do %>
+      <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+        <div class="d-flex flex-column justify-content-center">
+          <h4 class="text-center"><%= list.title %></h4>
+          <p class="text-center"><%= list.products.count %> products</p>
+        </div>
       </div>
     <% end %>
   <% end %>
+
+<div class="container">
+  <% @lists.first.products.each do |product| %>
+    <div class="product-tile">
+      <%= cl_image_tag product.photos.first.key, class: "photo" %>
+    </div>
+  <% end %>
+  <% (4 - @lists.first.products.count).times do %>
+    <div class="product-tile empty"></div>
+  <% end %>
+</div>
+
+
+
+
+
 </div>

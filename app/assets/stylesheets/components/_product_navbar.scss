@@ -1,0 +1,25 @@
+.navbar {
+  background-color: white;
+}
+
+.search-input {
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+
+  input {
+    border: none;
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    color: inherit;
+  }
+
+  button {
+    border: none;
+    background: transparent;
+    border: 1px solid transparent;
+    color: inherit;
+  }
+
+}

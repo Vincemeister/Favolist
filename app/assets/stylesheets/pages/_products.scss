@@ -1,0 +1,54 @@
+
+.product-info-bar {
+  font-weight: 300;
+  background-color: white;
+}
+
+.product-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.1em;
+  flex-direction: column;
+  background-color: white;
+
+  h5 {
+    margin: 0;
+    font-weight: 700px;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 300;
+  }
+}
+
+
+.review-box {
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 10px 10px 10px; /* Adds 20px padding on the left */
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px; /* Optional: Add some space between review boxes */
+  background-color: white;
+
+  p {
+    margin: 0; /* Reset the default margin */
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 300;
+  }
+}
+
+.text-container {
+  padding-left: 20px; /* Adds 20px padding on the left for the text */
+}
