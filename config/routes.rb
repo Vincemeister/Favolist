@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get :follows, on: :member
   end
 
-  resources :lists, only: [:show]
+  resources :lists, only: [:show, :new, :create]
   resources :products, only: [:index, :show, :new, :create]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

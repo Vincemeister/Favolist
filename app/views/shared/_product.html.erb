@@ -5,17 +5,22 @@
     <% end %>
   <% end %>
   <div class="title-and-price mx-auto text-center">
+    <% if params[:controller] != "lists" %>
+      <%= link_to list_path(product.list), class: "text-decoration-none", style: "color: #444444; font-weight: 100;" do %>
+        <%= product.list.title %>
+      <% end %>
+    <% end %>
     <h5> <%= product.title %></h3>
-    <p> $<%= number_with_precision(product.price, precision: 0) %></p>
+    $<%= number_with_precision(product.price, precision: 0) %>
   </div>
 </div>
 
 <div class="product">
-  <div id="carouselExampleIndicators" class="carousel slide">
+  <div id="carouselExampleIndicators<%= product.id %>" class="carousel slide">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <% product.photos.each_with_index do |photo, index| %>
+        <button type="button" data-bs-target="#carouselExampleIndicators<%= product.id %>" data-bs-slide-to="<%= index %>" class=<%= "active" if index == 0 %> aria-current="true" aria-label="Slide <%= index %>"></button>
+      <% end %>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -27,11 +32,11 @@
         </div>
       <% end %>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators<%= product.id %>" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators<%= product.id %>" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -39,13 +44,14 @@
 
 
   <div class="container d-flex py-1 px-1.5 justify-content-between align-items-center product-bar">
-    <div class="product-icon-buttons">
-      <%# <i class="fa-light fa-comment pl-1"></i> %>
-      <i class="fa-light fa-bookmark px-1"></i>
-      <%# <i class="fa-light fa-plus"></i> %>
-    </div>
+    <%= cl_image_tag product.user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
+    <%= product.user.username %>
     <%= cl_image_tag product.logo.key, crop: :fill, class: "logo container" %>
-  <%= link_to locals[:link_label], locals[:link_url], class: locals[:button_class] %>
+    <div class="product-icon-buttons">
+      <i class="fa-light fa-comment fa-lg"></i>
+      <i class="fa-light fa-square-plus fa-lg px-1"></i>
+      <i class="fa-light fa-circle-bookmark fa-lg"></i>
+    </div>
 
   </div>
 

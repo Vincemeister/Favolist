@@ -18,10 +18,10 @@
           <% end %>
         <% end %>
       </div>
-      <div class="text">
+      <div class="text" style="color: #8E8E8E;">
         <p>
           <%= @user.lists.count %> lists • <%= @user.products.count %> products<br>
-          <%= link_to follows_user_path(@user), class: "text-decoration-none text-body" do %>
+          <%= link_to follows_user_path(@user), class: "text-decoration-none text-body ", style: "color: #8E8E8E;" do %>
             <%= @user.followers.count %> followers • <%= @user.following.count %> following
           <% end %>
         </p>
@@ -29,29 +29,45 @@
     </div>
   </div>
 
-  <% @lists.each do |list| %>
-    <%= link_to list_path(list), class: "text-decoration-none" do %>
-      <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-        <div class="d-flex flex-column justify-content-center">
-          <h4 class="text-center"><%= list.title %></h4>
-          <p class="text-center"><%= list.products.count %> products</p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+  <div class="tab-bar d-flex justify-content-center px-3 py-1" style="font-weight: 100;">
+    <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
 
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active product-tabs" id="pills-lists-tab" data-bs-toggle="pill" data-bs-target="#pills-lists" type="button" role="tab" aria-controls="pills-lists" aria-selected="true">Lists</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link product-tabs" id="pills-bio-tab" data-bs-toggle="pill" data-bs-target="#pills-bio" type="button" role="tab" aria-controls="pills-bio" aria-selected="false">Profile</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link product-tabs" id="pills-referrals-tab" data-bs-toggle="pill" data-bs-target="#pills-referrals" type="button" role="tab" aria-controls="pills-referrals" aria-selected="false">Referrals</button>
+      </li>
 
-<!-- >
-  <div class="grid-container">
-    <% @lists.first.products.each do |product| %>
-      <div class="product-tile">
-        <%= cl_image_tag product.photos.first.key, class: "photo" %>
-      </div>
-    <% end %>
-    <% (4 - @lists.first.products.count).times do %>
-      <div class="product-tile empty"></div>
-    <% end %>
+    </ul>
   </div>
 
--->
+
+  <div class="tab-content product-content container" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-lists" role="tabpanel" aria-labelledby="pills-lists-tab">
+      <% @lists.each do |list| %>
+        <%= link_to list_path(list), class: "text-decoration-none" do %>
+          <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+            <div class="d-flex flex-column justify-content-center">
+              <h4 class="text-center"><%= list.title %></h4>
+              <p class="text-center"><%= list.products.count %> products</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="pills-bio" role="tabpanel" aria-labelledby="pills-bio-tab">
+      <%= @user.username %>
+    </div>
+    <div class="tab-pane fade" id="pills-referrals" role="tabpanel" aria-labelledby="pills-referrals-tab">
+        <% @user.products.each do |product| %>
+          <%= product.referrals %>
+        <% end %>
+    </div>
+  </div>
+
+
+</div>

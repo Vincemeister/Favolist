@@ -14,7 +14,6 @@
 
   h5 {
     margin: 0;
-    font-weight: 700px;
   }
 
   p {
@@ -25,17 +24,17 @@
 
 
 .review-box {
-  height: 80px;
+  height: 85px; /* Increase height to accommodate larger line height */
+  line-height: 1.2em;
   overflow: hidden;
   position: relative;
   padding: 10px 10px 10px 10px; /* Adds 20px padding on the left */
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px; /* Optional: Add some space between review boxes */
   background-color: white;
+  box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.1);
 
   p {
     margin: 0; /* Reset the default margin */
-    padding: 5px;
+    padding: 0px 10px 20px 10px;
     position: absolute;
     top: 0;
     left: 0;
@@ -45,10 +44,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-weight: 300;
+    color: $my-dark;
+    line-height: 1.7em;
   }
-}
-
-.text-container {
-  padding-left: 20px; /* Adds 20px padding on the left for the text */
 }

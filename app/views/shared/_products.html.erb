@@ -1,18 +1,15 @@
-<% products.each do |product| %>
-  <% if params[:controller] == "products" && params[:action] == "index" %>
-    <div class="container d-flex py-1 pb-3 px-1.5 mt-1 justify-content-start align-items-center product-info-bar">
-      <%= link_to user_path(product.user) do  %>
-        <%= cl_image_tag product.list.user.avatar.key, class: "avatar mx-2 align-self-center" %>
-      <% end %>
-      <p class="m-0"><strong><%= product.list.user.username %></strong> added to  <strong><%= product.list.title %></strong></p>
-    </div>
+<div class="container w-100 px-0 bg-white">
+  <% products.each do |product| %>
+    <%= render "shared/product", product: product, locals: { button_class: 'btn btn-main', link_url: product_path(product), link_label: "Read More" } %>
+    <%= link_to product_path(product) do%>
+      <div class="review-box w-100 mb-5">
+        <p>
+          <%= product.review %>
+        </p>
+      </div>
+    <% end %>
+
+
+
   <% end %>
-  <%= render "shared/product", product: product, locals: { button_class: 'btn btn-main', link_url: product_path(product), link_label: "Read More" } %>
-  <div class="review-box">
-    <div class="text-container">
-      <p>
-        <%= product.review %>
-      </p>
-    </div>
-  </div>
-<% end %>
+</div>
