@@ -2,7 +2,7 @@
 
 <div class="container w-100 bg-white user-container">
   <div class="profile-box d-flex flex-col align-content-center justify-content-center w-100 mx-auto bg-white py-3">
-    <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-xl align-self-center" %>
+    <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-xl align-self-center user-img" %>
     <div class="header-text-follow-button w-100 my-1 ml-3">
       <div class="header-and-follow-button d-flex justify-content-between align-items-bottom">
         <h3 class="align-self-end m-0 "><%= @user.username %></h3>
@@ -39,20 +39,19 @@
       </div>
     <% end %>
   <% end %>
-
-<div class="container">
-  <% @lists.first.products.each do |product| %>
-    <div class="product-tile">
-      <%= cl_image_tag product.photos.first.key, class: "photo" %>
-    </div>
-  <% end %>
-  <% (4 - @lists.first.products.count).times do %>
-    <div class="product-tile empty"></div>
-  <% end %>
 </div>
 
 
+<!-- >
+  <div class="grid-container">
+    <% @lists.first.products.each do |product| %>
+      <div class="product-tile">
+        <%= cl_image_tag product.photos.first.key, class: "photo" %>
+      </div>
+    <% end %>
+    <% (4 - @lists.first.products.count).times do %>
+      <div class="product-tile empty"></div>
+    <% end %>
+  </div>
 
-
-
-</div>
+-->

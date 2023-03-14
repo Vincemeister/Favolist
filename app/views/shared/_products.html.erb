@@ -1,6 +1,6 @@
 <% products.each do |product| %>
   <% if params[:controller] == "products" && params[:action] == "index" %>
-    <div class="container d-flex pt-1 pb-3 px-1.5 mt-1 justify-content-start align-items-center product-info-bar">
+    <div class="container d-flex py-1 pb-3 px-1.5 mt-1 justify-content-start align-items-center product-info-bar">
       <%= link_to user_path(product.user) do  %>
         <%= cl_image_tag product.list.user.avatar.key, class: "avatar mx-2 align-self-center" %>
       <% end %>

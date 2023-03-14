@@ -22,14 +22,13 @@ class User < ApplicationRecord
     following_relationships.find_by(following_id: user_id).destroy
   end
 
-  def remove_follower
-    @follower = User.find(params[:id])
-    current_user.followers.destroy(@follower)
+  def remove_follower(user_id)
+    follower_relationships.find_by(follower_id: user_id).destroy
   end
 
   def is_following?(user_id)
     relationship = Follow.find_by(follower_id: id, following_id: user_id)
-    return true if relationship
+    relationship ? true : false
   end
 
   def follows
