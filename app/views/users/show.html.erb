@@ -1,8 +1,6 @@
-
-
 <div class="container w-100 bg-white user-container">
   <div class="profile-box d-flex flex-col align-content-center justify-content-center w-100 mx-auto bg-white pt-3">
-    <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-xl align-self-center user-img" %>
+    <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", aspect_ratio: "1:1", class: "avatar-xl align-self-center user-img" %>
     <div class="header-text-follow-button w-100 my-1 ml-3">
       <div class="header-and-follow-button d-flex justify-content-between align-items-bottom">
         <h3 class="align-self-end"><%= @user.username %></h3>

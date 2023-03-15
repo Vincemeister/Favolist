@@ -1,6 +1,9 @@
 .product-tabs {
   color: $my-dark;
   text-decoration: none;
+  &:hover {
+    color: $my-dark;
+  }
 }
 
 

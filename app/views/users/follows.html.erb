@@ -19,7 +19,7 @@
         <div class="follow-bar d-flex justify-content-between align-items-center mb-3 w-100">
           <div class="follow-bar__content-container align-items-center d-flex">
             <%= link_to user_path(user) do %>
-              <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
+              <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar" %>
             <% end %>
             <div class="d-flex flex-column justify-content-center mx-2">
               <div class="d-flex">
@@ -52,7 +52,7 @@
       <div class="follow-bar d-flex justify-content-between align-items-center mb-3 w-100">
         <div class="follow-bar__content-container align-items-center d-flex">
           <%= link_to user_path(user) do %>
-            <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", class: "avatar" %>
+            <%= cl_image_tag user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar" %>
           <% end %>
           <div class="d-flex flex-column justify-content-center mx-2">
             <div class="d-flex">

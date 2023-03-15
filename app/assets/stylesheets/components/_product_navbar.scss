@@ -13,6 +13,10 @@
     background: transparent;
     border: 1px solid transparent;
     color: inherit;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   button {

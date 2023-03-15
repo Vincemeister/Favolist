@@ -37,4 +37,9 @@
 .no-underline {
   text-decoration: none;
   color: $my-dark;
+
+  &:hover {
+    text-decoration: none;
+    color: $my-dark;
+  }
 }
