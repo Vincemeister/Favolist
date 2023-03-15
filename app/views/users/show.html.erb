@@ -1,11 +1,11 @@
 
 
 <div class="container w-100 bg-white user-container">
-  <div class="profile-box d-flex flex-col align-content-center justify-content-center w-100 mx-auto bg-white py-3">
+  <div class="profile-box d-flex flex-col align-content-center justify-content-center w-100 mx-auto bg-white pt-3">
     <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", class: "avatar-xl align-self-center user-img" %>
     <div class="header-text-follow-button w-100 my-1 ml-3">
       <div class="header-and-follow-button d-flex justify-content-between align-items-bottom">
-        <h3 class="align-self-end m-0 "><%= @user.username %></h3>
+        <h3 class="align-self-end"><%= @user.username %></h3>
         <% if current_user != @user %>
           <% if current_user.is_following?(@user) %>
             <%= link_to unfollow_user_path(@user), method: :delete do %>
@@ -46,18 +46,25 @@
   </div>
 
 
-  <div class="tab-content product-content container" id="pills-tabContent">
+  <div class="tab-content product-content container w-100 p-0" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-lists" role="tabpanel" aria-labelledby="pills-lists-tab">
       <% @lists.each do |list| %>
         <%= link_to list_path(list), class: "text-decoration-none" do %>
-          <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3"
+            <% if list.products.any? %>
+              style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.products.first.photos.first.key %>);"
+            <% else %>
+              style="background-color: darkgray;"
+            <% end %>
+            >
             <div class="d-flex flex-column justify-content-center">
-              <h4 class="text-center"><%= list.title %></h4>
-              <p class="text-center"><%= list.products.count %> products</p>
+              <h3 class="text-center"><%= list.title %></h3>
+              <p class="text-center "><%= list.products.count %> products</p>
             </div>
           </div>
         <% end %>
       <% end %>
+
     </div>
     <div class="tab-pane fade" id="pills-bio" role="tabpanel" aria-labelledby="pills-bio-tab">
       <%= @user.username %>
@@ -72,25 +79,41 @@
 
 
 
+<!--
 
+<%# VINCE CODE old rectangle%>
 
-
-
-<%# VINCE CODE %>
 
 <% @lists.each do |list| %>
-  <%= link_to list_path(list), class: "text-decoration-none" do %>
-    <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3">
-      <div class="list-grid-8">
-        <%= generate_tiled_background(list) %>
-        <div class="d-flex flex-column justify-content-center list-content">
-          <h4 class="text-center"><%= list.title %></h4>
-          <p class="text-center"><%= list.products.count %> products</p>
+        <%= link_to list_path(list), class: "text-decoration-none" do %>
+          <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+            <div class="d-flex flex-column justify-content-center">
+              <h4 class="text-center"><%= list.title %></h4>
+              <p class="text-center"><%= list.products.count %> products</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+<%# VINCE CODE ß possible grid solution %>
+
+
+
+  <% @lists.each do |list| %>
+    <%= link_to list_path(list), class: "text-decoration-none" do %>
+      <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3">
+        <div class="list-grid-8">
+          <%= generate_tiled_background(list) %>
+          <div class="d-flex flex-column justify-content-center list-content">
+            <h4 class="text-center"><%= list.title %></h4>
+            <p class="text-center"><%= list.products.count %> products</p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+
+-->
 
 
 

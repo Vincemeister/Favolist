@@ -1,12 +1,43 @@
-.list-header {
-  background-color: white;
+
+
+.header-and-follow-button {
+
+  h3 {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  p {
+    font-weight: 100;
+  }
+
 }
+
 
 .list-container {
   height: calc(100vh - 24px);
   overflow-y: scroll;
 }
 
+.list-banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h3 {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+
+  p {
+    color: white;
+    font-weight: 100;
+  }
+}
 
 
 .list-grid-8 {
@@ -24,14 +55,7 @@
   box-sizing: border-box;
 }
 
-.list-banner {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+
 
 
 .list-content {

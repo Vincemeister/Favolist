@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Outfit", "300", "sans-serif";
+$body-font: "Outfit", "400", "sans-serif";
 $headers-font: "Outfit", "700", "sans-serif";
 $button-font: "Outfit", "100", "sans-serif";
 
@@ -18,5 +18,5 @@ $button-font: "Outfit", "100", "sans-serif";
 // $my-font: "Font Name";
 body {
   font-family: $body-font;
-  font-weight: 300;
+  font-weight: 400;
 }

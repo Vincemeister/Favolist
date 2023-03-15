@@ -1,4 +1,8 @@
 .follow-bar__user-list-and-products-count {
-  color: $my-dark-gray;
+  color: $my-dark;
+}
 
+.follows-container {
+  height: calc(100vh - 24px);
+  overflow-y: scroll;
 }

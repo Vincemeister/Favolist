@@ -1,4 +1,4 @@
-<div class="container bg-white">
+<div class="container follows-container bg-white">
 
   <div class="tab-bar d-flex justify-content-center px-3 py-1">
     <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
@@ -23,12 +23,12 @@
             <% end %>
             <div class="d-flex flex-column justify-content-center mx-2">
               <div class="d-flex">
-                <%= user.username %>
+                <span style="font-weight: 700;"><%= user.username %></span>
                 <% if current_user.is_following?(user.id) == false && @user == current_user %>
                   <%= button_to 'Follow', follow_user_path(user), method: :post, class: "small-follow" %>
                 <% end %>
               </div>
-              <div class="follow-bar__user-list-and-products-count">
+              <div class="follow-bar__user-list-and-products-count", style="font-weight: 400px;">
                 <%= user.lists.count %> lists • <%= user.products.count %> products
               </div>
             </div>
