@@ -2,10 +2,42 @@
   background-color: white;
 }
 
-
 .list-container {
   height: calc(100vh - 24px);
   overflow-y: scroll;
 }
 
 
+
+.list-grid-8 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tile {
+  background-size: cover;
+  background-position: center;
+  width: 50%;
+  padding-bottom: 50%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.list-banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.list-content {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  color: white;
+}

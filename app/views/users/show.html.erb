@@ -18,7 +18,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="text" style="color: #8E8E8E;">
+      <div class="text">
         <p>
           <%= @user.lists.count %> lists • <%= @user.products.count %> products<br>
           <%= link_to follows_user_path(@user), class: "text-decoration-none text-body ", style: "color: #8E8E8E;" do %>
@@ -68,6 +68,34 @@
         <% end %>
     </div>
   </div>
+
+
+
+
+
+
+
+
+<%# VINCE CODE %>
+
+<% @lists.each do |list| %>
+  <%= link_to list_path(list), class: "text-decoration-none" do %>
+    <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3">
+      <div class="list-grid-8">
+        <%= generate_tiled_background(list) %>
+        <div class="d-flex flex-column justify-content-center list-content">
+          <h4 class="text-center"><%= list.title %></h4>
+          <p class="text-center"><%= list.products.count %> products</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+
+
+
 
 
 </div>
