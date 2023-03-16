@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import BookmarksController from "./bookmarks_controller"
+application.register("bookmarks", BookmarksController)
+
+import ControllerController from "./controller_controller"
+application.register("controller", ControllerController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

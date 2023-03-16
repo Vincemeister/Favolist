@@ -49,7 +49,7 @@
       <% @lists.each do |list| %>
         <%= link_to list_path(list), class: "text-decoration-none" do %>
           <div class="list-banner d-flex flex-row justify-content-center align-items-center py-3 mb-3"
-            <% if list.products.any? %>
+            <% if list.products.any? && list.products.first.photos.any? %>
               style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.products.first.photos.first.key %>);"
             <% else %>
               style="background-color: darkgray;"
@@ -62,6 +62,10 @@
           </div>
         <% end %>
       <% end %>
+      <%= link_to new_list_path do %>
+        <i class="fa-light fa-circle-plus text-decoration-none" style="color: #444444"></i>
+      <% end %>
+
 
     </div>
     <div class="tab-pane fade" id="pills-bio" role="tabpanel" aria-labelledby="pills-bio-tab">

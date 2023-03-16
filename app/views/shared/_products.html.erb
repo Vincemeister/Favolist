@@ -1,15 +1,20 @@
 <div class="container w-100 px-0 bg-white">
-  <% products.each do |product| %>
+
+  <% @products.each do |product| %>
     <%= render "shared/product", product: product, locals: { button_class: 'btn btn-main', link_url: product_path(product), link_label: "Read More" } %>
     <%= link_to product_path(product), class: "no-underline" do%>
       <div class="review-box w-100">
+
+        <% if product.review %>
         <p>
           <%= product.review.truncate(157) %>
         </p>
+        <% else %>
+        <p>
+          No review yet.
+        </p>
+        <% end %>
       </div>
     <% end %>
-
-
-
   <% end %>
 </div>
