@@ -12,3 +12,9 @@ application.register("controller", ControllerController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ShareController from "./share_controller"
+application.register("share", ShareController)
+
+import TetrisBackgroundController from "./tetris_background_controller"
+application.register("tetris-background", TetrisBackgroundController)

@@ -27,9 +27,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def landing_page
-    @products = Product.all
-  end
 
   private
 

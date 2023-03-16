@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'landing_page/tetris'
   devise_for :users
   root to: "products#index"
   resources :users, only: [:index, :show] do
@@ -13,7 +14,9 @@ Rails.application.routes.draw do
 
   resources :lists, only: [:show, :new, :create]
   resources :products, only: [:index, :show, :new, :create]
-  get '/landing-page', to: 'products#landing_page'
+
+  get 'tetris_background', to: 'tetris_background#index'
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -66,7 +66,7 @@ puts "Creating 50 random users"
 
 random_users = []
 
-  10.times do
+  18.times do
   avatar = URI.open("https://source.unsplash.com/random/?user-profile-picture")
   user = User.create(username: Faker::Name.first_name, email: Faker::Internet.email, password: "password")
   user.avatar.attach(io: avatar, filename: 'avatar.jpg', content_type: 'image/jpg')
@@ -110,7 +110,7 @@ random_users.each do |user|
 
   num_followings.times do
     following_id = main_users.sample.id # Generate a random following ID
-    while used_following_ids.include?(following_id) # Check if the ID has been used before
+    while used_following_ids.include?(following_id) || user.id == following_id # Check if the ID has been used before or if it's the user's own ID
       following_id = main_users.sample.id # Generate a new ID if it has
     end
 
@@ -119,7 +119,37 @@ random_users.each do |user|
   end
 end
 
+puts "Establishing Tims followships random followships..."
 
+
+random_users.reject { |user| user.id == tim.id }.each do |user|
+  Follow.create(follower_id: user.id, following_id: tim.id)
+end
+
+follow_count = 0
+max_tries = random_users.count * 5
+
+while follow_count < 15
+  random_user_id = random_users.sample.id
+
+  if !tim.following.exists?(random_user_id) && random_user_id != tim.id
+    Follow.create(follower_id: tim.id, following_id: random_user_id)
+    follow_count += 1
+  end
+
+  max_tries -= 1
+  break if max_tries <= 0
+end
+
+if max_tries <= 0
+  puts "Warning: Not all followships created, please check the user pool."
+end
+
+
+
+
+
+User.all
 
 puts "Creating random lists and random products for main users except tim"
 
