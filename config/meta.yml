@@ -1,0 +1,5 @@
+meta_name: "Favolist"
+meta_title: "Favolist - List & share your favorite things"
+meta_description: "Relevant description"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@your_twitter_account"   # required for Twitter Cards
