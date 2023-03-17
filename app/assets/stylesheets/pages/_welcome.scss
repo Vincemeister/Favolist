@@ -1,0 +1,51 @@
+
+.welcome-page html,
+.welcome-page body {
+  height: 100%;
+}
+
+.welcome-background-image {
+  position: relative;
+  background-image: url("https://res.cloudinary.com/dncij7vr6/image/upload/v1679018269/favolist/app%20assets/iPhone_14_-_1_1_iue0gj.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+.welcome-container {
+  color: white;
+  font-family: $body-font;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  h1{
+    font-family: $headers-font;
+    font-size: 48px;
+  }
+
+  h3 {
+    font-family: $headers-font;
+    font-size: 18px;
+  }
+
+  .welcome-button {
+    font-family: $button-font;
+    font-size: 1.5rem;
+    border: 5px solid white; /* Combine border properties */
+    border-radius: none;
+    border-color: white;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+  }
+
+}

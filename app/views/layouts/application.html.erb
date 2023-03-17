@@ -26,7 +26,7 @@
     <%= render "shared/flashes" %>
 
     <%= yield %>
-    <%= render "shared/menu" unless controller_name == 'sessions' || controller_name == 'registrations'%>
+    <%= render "shared/menu" unless controller_name == 'sessions' || controller_name == 'registrations' || controller_name == 'welcome'%>
 
   </body>
 </html>
