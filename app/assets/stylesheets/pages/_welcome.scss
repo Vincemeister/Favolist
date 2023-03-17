@@ -7,6 +7,8 @@
 .welcome-background-image {
   position: relative;
   background-image: url("https://res.cloudinary.com/dncij7vr6/image/upload/v1679018269/favolist/app%20assets/iPhone_14_-_1_1_iue0gj.png");
+  background-color: rgba(17, 17, 17, .3);
+  background-blend-mode: overlay;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -29,7 +31,7 @@
 
   h3 {
     font-family: $headers-font;
-    font-size: 18px;
+    font-size: 24px;
   }
 
   .welcome-button {
@@ -39,7 +41,7 @@
     border-radius: none;
     border-color: white;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 28px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
