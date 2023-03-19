@@ -379,8 +379,14 @@ pod_cover = Product.create(
   list: sleep_enhancers,
   title: "Pod 3 Cooling Cover",
   price: 1945,
-  review: "Temperature is one of the main causes of poor sleep, and heat is my nemesis. I’ve suffered for decades, tossing and turning, throwing blankets off, pulling them back on, and repeating ad nauseam. The Pod 3 Cover has been a game changer for the quality of my sleep and the quality of my life. It pairs dynamic cooling and heating with biometric tracking to offer the most advanced (and user-friendly) solution on the market. I’ve been using Eight Sleep for more than two years. Just in time for the holidays, add the Pod 3 Cover to your current mattress and start sleeping as cool as 55°F or as hot as 110°F. It also splits your bed in half, so your partner can choose a totally different temp. The Pod technology adjusts the temperature of each side of the bed based on your sleep stages, biometrics, and bedroom temperature, reacting intelligently to create the optimal sleeping environment.",
-  description: "The Pod 3 Cooling Cover from Eight Sleep is a revolutionary product that improves the quality of your sleep by keeping you at the optimal temperature all night long. With dynamic cooling and heating, biometric tracking, and the ability to adjust each side of the bed to different temperatures, the Pod 3 Cover is the most advanced and user-friendly solution on the market. It seamlessly fits onto a 10”-11” mattress and tracks your sleep without the need for a wearable device. Get more energy and better sleep with the Pod 3 Cooling Cover from Eight Sleep.",
+  review: "Temperature is one of the main causes of poor sleep, and heat is my nemesis. I’ve suffered for decades, tossing and turning, throwing blankets off, pulling them back on, and repeating ad nauseam.\n\n
+   The Pod 3 Cover has been a game changer for the quality of my sleep and the quality of my life. It pairs dynamic cooling and heating with biometric tracking to offer the most advanced (and user-friendly) solution on the market.\n\n
+    I’ve been using Eight Sleep for more than two years. Just in time for the holidays, add the Pod 3 Cover to your current mattress and start sleeping as cool as 55°F or as hot as 110°F. It also splits your bed in half, so your partner can choose a totally different temp.\n\n
+    The Pod technology adjusts the temperature of each side of the bed based on your sleep stages, biometrics, and bedroom temperature, reacting intelligently to create the optimal sleeping environment.",
+  description: "The Pod 3 Cooling Cover from Eight Sleep is a revolutionary product that improves the quality of your sleep by keeping you at the optimal temperature all night long.
+  \n\n
+  With dynamic cooling and heating, biometric tracking, and the ability to adjust each side of the bed to different temperatures, the Pod 3 Cover is the most advanced and user-friendly solution on the market.
+  \n\nIt seamlessly fits onto a 10”-11” mattress and tracks your sleep without the need for a wearable device. Get more energy and better sleep with the Pod 3 Cooling Cover from Eight Sleep.",
   referrals: "For a limited time, Eight Sleep is offering subscribers of 5-Bullet Friday $450 off(!) of their Sleep Fit Holiday Bundle, which includes my personal favorite, the Pod 3 Cover. Click here to get the exclusive holiday savings until November 30th.*: https://www.eightsleep.com/tim/ FOR THE FEED",
 )
 files = [
@@ -607,33 +613,35 @@ nomatic = Product.create(
   list: on_the_road_list,
   title: "NOMATIC Backpack",
   price: 250,
-  review: "Stylish af bag I take with me every day.\n
+  review: "Stylish af bag I take with me every day.\n\n
 
   Usually I carry my kindl, nextstand, keyboard, mouse, journal and other items in it. When travelling it also
   accomodate the items I don’t want to put in the checked baggage.Large enough for day trips: can carry a big bottle,
-  16-inch macbook pro, ipad, a set of clothing for 2 days (bar trousers) and is just my little baby.\n
+  16-inch macbook pro, ipad, a set of clothing for 2 days (bar trousers) and is just my little baby.\n\n
 
   Thank you brother for this surprise Christmas gift which I told you to get me after doing my usual 4 hours of research
   to find the best. Once again, this brand appears in every “Top 5” blog post about laptop bags.
   I’ve had it for four years now and it’s basically in the same shape as when I bought it.
-  The design buffers shock so that my laptop survived bump here and there.\n
+  The design buffers shock so that my laptop survived bump here and there.\n\n
   I just love this thing. Check it out for yourself. Ah yes, and it’s water resistant.",
 
   description: "The NOMATIC Travel Pack was designed for everyday use and for those shorter 1-3 day trips. It’s made
   with durable, water-resistant materials and YKK zippers. Expanding 50%, this bag is slim but expands when you need to
   pack more. The patent pending strap system allows you to go from backpack to briefcase carry for those times when you
-  need to look more professional.\n
+  need to look more professional.\n\n
 
   The full perimeter zipper, magnetic water bottle pockets, RFID safe storage, and hidden pockets are just a few of the
   20+ noteworthy features that make the Travel Pack the most functional travel pack ever! On top of being packed with
   incredible functionality, the NOMATIC Travel Pack has a sleek minimalist design and gives you confidence for your
-  life on the move.\n
+  life on the move.\n\n
 
-  Includes\n
-  Sunglasses Case\n
+  Includes\n\n
+  Sunglasses Case\n\n
   Retractable Key-Leash",
 
-  referrals: "Use code 'NOMAD' and you get 15% off your first purchase. I also get 15% off my next purchase!"
+  referrals: "Use code 'NOMAD' and you get 15% off your first purchase. I also get 15% off my next purchase!
+  \n\n
+  "
 )
 
 files = [

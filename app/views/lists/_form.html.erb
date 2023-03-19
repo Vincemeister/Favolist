@@ -2,12 +2,7 @@
 <div class="container">
   <%= simple_form_for @list do |f| %>
     <%= f.input :title, required: true %>
-    <%= f.input :price, required: true %>
-    <%= f.input :review %>
-    <%= f.input :description, required: true %>
-    <%= f.input :referrals %>
-    <%= f.input :logo, as: :file, required: true %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true }, required: true %>
+    <%= f.input :description %>
     <%= f.button :submit %>
   <% end %>
 </div>
