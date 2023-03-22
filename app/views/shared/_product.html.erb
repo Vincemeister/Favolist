@@ -61,9 +61,19 @@
     <div class="product-icon-buttons">
       <i class="fa-light fa-comment fa-lg"></i>
       <i class="fa-light fa-square-plus fa-lg px-1"></i>
+
+
+    <% if user_signed_in? && current_user.bookmarked_products.include?(product) %>
+      <%= link_to bookmark_path(id: product.id), method: :delete, data: { controller: "bookmarks", action: "click->bookmarks#toggle", bookmarks_target: "bookmark" }, class: 'fa-light fa-circle-bookmark fa-lg' do %>
+      <% end %>
+    <% elsif user_signed_in? %>
+      <%= link_to bookmarks_path(product_id: product.id), method: :post, data: { controller: "bookmarks", action: "click->bookmarks#toggle", bookmarks_target: "bookmark" }, class: 'fa-light fa-circle-bookmark fa-lg' do %>
+      <% end %>
+    <% else %>
+      <i data-controller="bookmarks" data-action="click->bookmarks#toggle" data-bookmarks-target="bookmark" class="fa-light fa-circle-bookmark fa-lg"></i>
+    <% end %>
       <i data-controller="bookmarks" data-action="click->bookmarks#toggle" data-bookmarks-target="bookmark" class="fa-light fa-circle-bookmark fa-lg"></i>
     </div>
-
   </div>
-
+  <%= console %>
 </div>

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :lists, only: [:show, :new, :create]
   resources :products, only: [:index, :show, :new, :create]
+  resources :bookmarks, only: [:create, :destroy]
+
 
   get 'welcome', to: 'welcome#show'
 

@@ -62,10 +62,12 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to new_list_path do %>
-        <i class="fa-light fa-circle-plus text-decoration-none" style="color: #444444"></i>
-      <% end %>
 
+      <div class="d-flex justify-content-center">
+        <%= link_to new_list_path, class: "d-flex text-align-center text-decoration-none mt-3" do %>
+          <i class="fa-light fa-circle-plus fa-2xl text-decoration-none" style="color: #8E8E8E"></i>
+        <% end %>
+      </div>
 
     </div>
     <div class="tab-pane fade" id="pills-bio" role="tabpanel" aria-labelledby="pills-bio-tab">

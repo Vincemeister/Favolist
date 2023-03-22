@@ -66,7 +66,7 @@ puts "Creating 50 random users"
 
 random_users = []
 
-  18.times do
+  3.times do
   avatar = URI.open("https://source.unsplash.com/random/?user-profile-picture")
   user = User.create(username: Faker::Name.first_name, email: Faker::Internet.email, password: "password")
   user.avatar.attach(io: avatar, filename: 'avatar.jpg', content_type: 'image/jpg')
@@ -77,11 +77,11 @@ puts "Creating random lists and 50 random products for dummy users"
 
 random_users.each do |user|
   # Randomly create between 1 and 15 lists for each user
-  (rand(1..15)).times do
+  (rand(1..3)).times do
     list = List.create(user: user, title: Faker::Lorem.sentence(word_count: 3))
 
     # Randomly create between 1 and 7 products for each list
-    (rand(1..7)).times do
+    (rand(1..3)).times do
       Product.create(list: list, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
     end
   end
@@ -155,11 +155,11 @@ puts "Creating random lists and random products for main users except tim"
 
 main_users.each do |user|
   # Randomly create between 1 and 15 lists for each user
-  (rand(1..15)).times do
+  (rand(1..3)).times do
     list = List.create(user: user, title: Faker::Lorem.sentence(word_count: 3))
 
     # Randomly create between 1 and 7 products for each list
-    (rand(1..7)).times do
+    (rand(1..3)).times do
       Product.create(list: list, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
     end
   end
@@ -175,12 +175,13 @@ puts "Creating list..."
 
 puts "creating lists of products that appear in the feed"
 
-every_day_saviors = List.create(title: "Every Day Saviors", user_id: ava.id)
-functional_apparel = List.create(title: "Functional Apparel", user_id: chris.id)
-healthtech_gadgets = List.create(title: "Healthtech Gadgets", user_id: vinc.id)
-alcohol_alternatives = List.create(title: "Alcohol Alternatives", user_id: ramesh.id)
-my_zen_list = List.create(title: "My Zen List", user_id: jing.id)
-dreamy_time_list = List.create(title: "Dreamy Time List", user_id: nina.id)
+every_day_saviors = List.create(title: "Every Day Saviors", user_id: vinc.id)
+functional_apparel = List.create(title: "Functional Apparel", user_id: vinc.id)
+healthtech_gadgets = List.create(title: "Fitness", user_id: vinc.id)
+alcohol_alternatives = List.create(title: "Alcohol Alternatives", user_id: vinc.id)
+my_zen_list = List.create(title: "Mindfulness & Relaxation", user_id: vinc.id)
+dreamy_time_list = List.create(title: "Dreamy Time List", user_id: vinc.id)
+travel_gear = List.create(title: "Adventure & Travel Gear", user_id: vinc.id)
 
 
 
@@ -191,12 +192,7 @@ food_and_health_supplements = List.create(title: "Food & Supplements", user_id: 
 fitness = List.create(title: "Fitness", user_id: tim.id)
 mood_boosters = List.create(title: "Mood Boosters", user_id: tim.id)
 productivity_boosters = List.create(title: "Productivity Boosters", user_id: tim.id)
-apparel = List.create(title: "Apparel", user_id: tim.id)
-
-
-travel_gear = List.create(title: "Travel Gear", user_id: nina.id)
-on_the_road_list = List.create(title: "On The Road List", user_id: chris.id)
-my_ultimate_travel_list = List.create(title: "My Ultimate Travel List", user_id: ramesh.id)
+functional_clothing = List.create(title: "Apparel", user_id: tim.id)
 
 
 
@@ -379,16 +375,18 @@ pod_cover = Product.create(
   list: sleep_enhancers,
   title: "Pod 3 Cooling Cover",
   price: 1945,
-  review: "Temperature is one of the main causes of poor sleep, and heat is my nemesis. I’ve suffered for decades, tossing and turning, throwing blankets off, pulling them back on, and repeating ad nauseam.\n\n
-   The Pod 3 Cover has been a game changer for the quality of my sleep and the quality of my life. It pairs dynamic cooling and heating with biometric tracking to offer the most advanced (and user-friendly) solution on the market.\n\n
-    I’ve been using Eight Sleep for more than two years. Just in time for the holidays, add the Pod 3 Cover to your current mattress and start sleeping as cool as 55°F or as hot as 110°F. It also splits your bed in half, so your partner can choose a totally different temp.\n\n
-    The Pod technology adjusts the temperature of each side of the bed based on your sleep stages, biometrics, and bedroom temperature, reacting intelligently to create the optimal sleeping environment.",
+  review: "Temperatureis one of the main causes of poor sleep, and heat is my nemesis. I’ve suffered for decades, tossing and turning, throwing blankets off, pulling them back on, and repeating ad nauseam.
+  The Pod 3 Cover has been a game changer for the quality of my sleep and the quality of my life. It pairs dynamic cooling and heating with biometric tracking to offer the most advanced (and user-friendly) solution on the market.
+  I’ve been using Eight Sleep for more than two years. Just in time for the holidays, add the Pod 3 Cover to your current mattress and start sleeping as cool as 55°F or as hot as 110°F. It also splits your bed in half, so your partner can choose a totally different temp.
+  The Pod technology adjusts the temperature of each side of the bed based on your sleep stages, biometrics, and bedroom temperature, reacting intelligently to create the optimal sleeping environment.",
+
+
   description: "The Pod 3 Cooling Cover from Eight Sleep is a revolutionary product that improves the quality of your sleep by keeping you at the optimal temperature all night long.
-  \n\n
   With dynamic cooling and heating, biometric tracking, and the ability to adjust each side of the bed to different temperatures, the Pod 3 Cover is the most advanced and user-friendly solution on the market.
-  \n\nIt seamlessly fits onto a 10”-11” mattress and tracks your sleep without the need for a wearable device. Get more energy and better sleep with the Pod 3 Cooling Cover from Eight Sleep.",
+  It seamlessly fits onto a 10”-11” mattress and tracks your sleep without the need for a wearable device. Get more energy and better sleep with the Pod 3 Cooling Cover from Eight Sleep.",
   referrals: "For a limited time, Eight Sleep is offering subscribers of 5-Bullet Friday $450 off(!) of their Sleep Fit Holiday Bundle, which includes my personal favorite, the Pod 3 Cover. Click here to get the exclusive holiday savings until November 30th.*: https://www.eightsleep.com/tim/ FOR THE FEED",
 )
+
 files = [
   URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678704407/favolist/app%20assets/product%20images/tim%20ferris/Pod%203%20Cover/Pod_3_Cover_keri9v.jpg")
 ]
@@ -591,6 +589,7 @@ osprey_farpoint = Product.create(
   title: "Osprey Farpoint 40 L",
   price: 230,
   description: "The Osprey Farpoint 40 L is the perfect backpack for your next adventure. With a spacious main compartment and several smaller pockets, this backpack can hold all of your essentials while still being compact enough to carry on a plane. The lightweight and durable design make it ideal for backpacking, camping, or even just a weekend getaway.",
+
   review: "I recently took the Osprey Farpoint 40 L on a month-long backpacking trip through Europe and it was the perfect choice. The backpack is comfortable to wear, even with a full load, and the multiple compartments make it easy to stay organized. I also appreciated the compact size when traveling on trains and buses. Highly recommended!",
   referrals: "Get your own Osprey Farpoint 40 L backpack today and use it for your next adventure. You won't be disappointed.",
   )
@@ -613,35 +612,19 @@ nomatic = Product.create(
   list: on_the_road_list,
   title: "NOMATIC Backpack",
   price: 250,
-  review: "Stylish af bag I take with me every day.\n\n
-
-  Usually I carry my kindl, nextstand, keyboard, mouse, journal and other items in it. When travelling it also
-  accomodate the items I don’t want to put in the checked baggage.Large enough for day trips: can carry a big bottle,
-  16-inch macbook pro, ipad, a set of clothing for 2 days (bar trousers) and is just my little baby.\n\n
-
-  Thank you brother for this surprise Christmas gift which I told you to get me after doing my usual 4 hours of research
-  to find the best. Once again, this brand appears in every “Top 5” blog post about laptop bags.
-  I’ve had it for four years now and it’s basically in the same shape as when I bought it.
-  The design buffers shock so that my laptop survived bump here and there.\n\n
+  review: "Stylish af bag I take with me every day.
+  Usually I carry my kindl, nextstand, keyboard, mouse, journal and other items in it. When travelling it also accomodates the items I don’t want to put in the checked baggage. Large enough for day trips: can carry a big bottle, 16-inch macbook pro, ipad, a set of clothing for 2 days (bar trousers) and is just my little baby.
+  Thank you brother for this surprise Christmas gift which I told you to get me after doing my usual 4 hours of research to find the best. Once again, this brand appears in every “Top 5” blog post about laptop bags. I’ve had it for four years now and it’s basically in the same shape as when I bought it. The design buffers shock so that my laptop survived bump here and there.
   I just love this thing. Check it out for yourself. Ah yes, and it’s water resistant.",
 
-  description: "The NOMATIC Travel Pack was designed for everyday use and for those shorter 1-3 day trips. It’s made
-  with durable, water-resistant materials and YKK zippers. Expanding 50%, this bag is slim but expands when you need to
-  pack more. The patent pending strap system allows you to go from backpack to briefcase carry for those times when you
-  need to look more professional.\n\n
-
-  The full perimeter zipper, magnetic water bottle pockets, RFID safe storage, and hidden pockets are just a few of the
-  20+ noteworthy features that make the Travel Pack the most functional travel pack ever! On top of being packed with
-  incredible functionality, the NOMATIC Travel Pack has a sleek minimalist design and gives you confidence for your
-  life on the move.\n\n
-
-  Includes\n\n
-  Sunglasses Case\n\n
+  description: "The NOMATIC Travel Pack was designed for everyday use and for those shorter 1-3 day trips. It’s made with durable, water-resistant materials and YKK zippers. Expanding 50%, this bag is slim but expands when you need to pack more. The patent pending strap system allows you to go from backpack to briefcase carry for those times when you need to look more professional.
+  The full perimeter zipper, magnetic water bottle pockets, RFID safe storage, and hidden pockets are just a few of the 20+ noteworthy features that make the Travel Pack the most functional travel pack ever! On top of being packed with incredible functionality, the NOMATIC Travel Pack has a sleek minimalist design and gives you confidence for your life on the move.
+  Includes
+  Sunglasses Case
   Retractable Key-Leash",
 
   referrals: "Use code 'NOMAD' and you get 15% off your first purchase. I also get 15% off my next purchase!
-  \n\n
-  "
+"
 )
 
 files = [
@@ -653,64 +636,6 @@ logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678265282/f
 nomatic.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
 nomatic.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
 nomatic.save!
-
-northface_jester = Product.create(
-  list: my_ultimate_travel_list,
-  title: "Northface Jester",
-  price: 290,
-  description: "The North Face Jester Backpack is a popular choice for travelers and commuters alike. It features a spacious main compartment, a padded laptop sleeve, and a front compartment with an organizer panel. The Jester also has a breathable mesh back panel and shoulder straps for comfort during long periods of wear. With its durable construction and versatile design, the Jester is a great option for anyone on the go.",
-  referrals: "You can find the North Face Jester Backpack on their official website or at most outdoor retailers.",
-  review: "I have had this backpack for a few years now and it has been a great backpack. I use it for school and it fits all my books and notebooks. It has a lot of pockets and compartments for organization. It is very comfortable to wear and has a lot of padding on the straps. It is also very durable and has held up well over the years. I would definitely recommend this backpack to anyone looking for a good backpack for school or travel."
-)
-files = [
-  URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678956784/favolist/app%20assets/product%20images/more%20products/666a1497-7321-41a2-acb7-dacaf35df29e_dr3kss.jpg"),
-]
-logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678956802/favolist/app%20assets/product%20images/more%20products/2d3ec812-f7b9-4d53-b398-11e6d63a133a_irtejq.jpg")
-northface_jester.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
-northface_jester.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
-northface_jester.save!
-
-
-
-
-
-#################### TIM FERRIS FILLER######################
-
-
-(rand(1..7)).times do
-    Product.create(list: sleep_enhancers, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
-end
-file = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678783878/favolist/app%20assets/product%20images/tim%20ferris/Mattress/Helix_cj4ycg.jpg")
-sleep_enhancers.products.first.photos.attach(io: file, filename: "image.jpg", content_type: "image/jpg")
-sleep_enhancers.products.first.save!
-
-(rand(1..7)).times do
-  Product.create(list: mood_boosters, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
-end
-file = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678963964/favolist/app%20assets/product%20images/more%20products/pym_n3ryc4.jpg")
-mood_boosters.products.first.photos.attach(io: file, filename: "image.jpg", content_type: "image/jpg")
-mood_boosters.products.first.save!
-
-(rand(1..7)).times do
-  Product.create(list: productivity_boosters, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
-end
-file = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678964039/favolist/app%20assets/product%20images/more%20products/5718978_5c23eccb-d1fa-4c3c-a414-403f9feddd1e_i80iid.jpg")
-productivity_boosters.products.first.photos.attach(io: file, filename: "image.jpg", content_type: "image/jpg")
-productivity_boosters.products.first.save!
-
-(rand(1..7)).times do
-  Product.create(list: fitness, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
-end
-
-
-
-(rand(1..7)).times do
-  Product.create(list: apparel, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
-end
-
-
-
-
 
 
 puts "SEEDING COMPLETE!"
