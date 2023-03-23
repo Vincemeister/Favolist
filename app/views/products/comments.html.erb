@@ -1,0 +1,6 @@
+<%= render 'comments/form', product: @product, comment: Comment.new, parent_comment_id: nil %>
+<div class="container">
+  <h4>Comments</h4>
+<%= render 'comments/form', product: @product, comment: @product.comments.new, parent_comment_id: nil, remote: true %>
+<%= render @product.comments.where(parent_comment_id: nil) %>
+</div>

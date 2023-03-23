@@ -58,21 +58,23 @@
     <% else %>
       <%= image_tag "https://unsplash.com/photos/hxi_yRxODNc", crop: :fill, class: "logo container" %>
     <% end %>
-    <div class="product-icon-buttons">
-      <i class="fa-light fa-comment fa-lg"></i>
+    <div class="product-icon-buttons d-flex justify-content-center align-items-center">
+      <%= link_to product_comments_path(product), class: 'no-style-button' do %>
+        <i class="fa-light fa-comment fa-lg"></i>
+      <% end %>
+
       <i class="fa-light fa-square-plus fa-lg px-1"></i>
 
-
-    <% if user_signed_in? && current_user.bookmarked_products.include?(product) %>
-      <%= link_to bookmark_path(id: product.id), method: :delete, data: { controller: "bookmarks", action: "click->bookmarks#toggle", bookmarks_target: "bookmark" }, class: 'fa-light fa-circle-bookmark fa-lg' do %>
-      <% end %>
-    <% elsif user_signed_in? %>
-      <%= link_to bookmarks_path(product_id: product.id), method: :post, data: { controller: "bookmarks", action: "click->bookmarks#toggle", bookmarks_target: "bookmark" }, class: 'fa-light fa-circle-bookmark fa-lg' do %>
+    <% if product.bookmarked_by?(current_user) %>
+      <%= link_to unbookmark_product_path(product), method: :post, class: 'no-style-button', data: { controller: 'bookmark', action: 'click->bookmark#toggle', target: 'bookmark.bookmarkButton' } do %>
+        <i class="fa-solid fa-circle-bookmark fa-lg"></i>
       <% end %>
     <% else %>
-      <i data-controller="bookmarks" data-action="click->bookmarks#toggle" data-bookmarks-target="bookmark" class="fa-light fa-circle-bookmark fa-lg"></i>
+      <%= link_to bookmark_product_path(product), method: :post, class: 'no-style-button', data: { controller: 'bookmark', action: 'click->bookmark#toggle', target: 'bookmark.bookmarkButton' } do %>
+        <i class="fa-light fa-circle-bookmark fa-lg"></i>
+      <% end %>
     <% end %>
-      <i data-controller="bookmarks" data-action="click->bookmarks#toggle" data-bookmarks-target="bookmark" class="fa-light fa-circle-bookmark fa-lg"></i>
+
     </div>
   </div>
 </div>

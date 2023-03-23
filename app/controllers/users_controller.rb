@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :follow, :unfollow, :follows, :remove_follower]
+  before_action :set_user, only: [:show, :follow, :unfollow, :follows, :remove_follower, :bookmark, :unbookmark]
 
   def index
     @users = User.where.not(id: current_user.id)
@@ -39,6 +39,25 @@ class UsersController < ApplicationController
   def follows
     @followers = @user.followers
     @following = @user.following
+  end
+
+
+  def bookmark
+    if current_user.bookmark(params[:product_id])
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
+      end
+    end
+  end
+
+  def unbookmark
+    if current_user.unbookmark(params[:product_id])
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js { render action: :bookmark }
+      end
+    end
   end
 
 

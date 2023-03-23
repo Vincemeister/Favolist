@@ -1,0 +1,14 @@
+<div class="comment" data-comments-target="list">
+  <%= image_tag comment.user.avatar.variant(resize: "50x50") %>
+  <div class="comment-details">
+    <strong><%= comment.user.username %></strong>
+    <span><%= comment.created_at.strftime("%B %e, %Y at %l:%M %p") %></span>
+    <p><%= comment.body %></p>
+<%= render 'comments/form', commentable: @product, comment: @product.comments.new, parent_comment_id: comment.id, remote: true %>
+    <% if comment.respond_to?(:comments) %>
+      <% comment.comments.each do |child_comment| %>
+        <%= render "comments/comment", comment: child_comment, comment_iteration: comment_iteration + 1 %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

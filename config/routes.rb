@@ -8,13 +8,24 @@ Rails.application.routes.draw do
       post :unfollow
       post :remove_follower
     end
-
     get :follows, on: :member
   end
 
+  resources :products, only: [:index, :show, :new, :create] do
+    member do
+      post :bookmark
+      post :unbookmark
+    end
+
+    member do
+      get :comments
+    end
+
+    resources :comments, only: :create
+  end
+
+
   resources :lists, only: [:show, :new, :create]
-  resources :products, only: [:index, :show, :new, :create]
-  resources :bookmarks, only: [:create, :destroy]
 
 
   get 'welcome', to: 'welcome#show'
