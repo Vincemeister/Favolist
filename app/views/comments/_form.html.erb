@@ -1,9 +1,12 @@
-<%= form_with(model: [@product, comment], url: product_comments_path(@product), local: true, data: { target: "comments.form" }, method: :post, class: "comments-form", data: { action: "comments#submitForm" }) do |form| %>
-  <div class="field">
-    <%= form.label :body, 'Leave a comment:' %>
-    <%= form.text_area :body, rows: 3 %>
+<div class="container navbar-comments d-flex justify-content-between align-items-center py-2 border-bottom ">
+  <%= cl_image_tag current_user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar me-2"%>
+<%= form_with(model: [@product, comment], url: product_comments_path(@product), remote: true, local: false, data: { target: "comments.form", action: "submit->comments#submitForm" }, method: :post, class: "comments-form w-100") do |form| %>
+    <div class="d-flex position-relative form-control comment-input w-100">
+      <%= form.text_area :body, rows: 1, placeholder: 'Leave a comment...', class: "comment-textarea" %>
+      <%= button_tag type: "submit", class: "comment-submit" do %>
+        Post
+      <% end %>
+    </div>
     <%= form.hidden_field :parent_comment_id, value: parent_comment_id %>
-
-  </div>
-  <%= form.submit "Submit", class: "btn btn-primary" %>
-<% end %>
+  <% end %>
+</div>

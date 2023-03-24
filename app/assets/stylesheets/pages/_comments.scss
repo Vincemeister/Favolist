@@ -1,0 +1,33 @@
+.navbar-comments {
+  background-color: $my-light-gray;
+}
+
+.comment-input {
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  background: white;
+}
+
+.comment-textarea {
+  border: none;
+  width: 100%;
+  color: inherit;
+  padding-right: 60px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.comment-submit {
+  border: none;
+  border: 1px solid transparent;
+  color: $my-pink;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+}
+

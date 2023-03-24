@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-start align-items-center flex-row px-3 py-1 bg-white w-100">
+  <%= link_to product_comments_path(@parent_comment.product)do %>
+    <i class="fas fa-arrow-left fa-light text-decoration-none" style="color: #444444;"></i>
+  <% end %>
+  <div class="mx-auto text-center">
+    <div class="profile-box d-flex align-items-center">
+      <div class="d-flex flex-column justify-content-center align-items-start">
+        <h3 class="m-0 p-0">Replies</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'comments/comment', comment: @parent_comment %>

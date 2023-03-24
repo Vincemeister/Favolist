@@ -1,13 +1,24 @@
-<div class="comment" data-comments-target="list">
-  <%= image_tag comment.user.avatar.variant(resize: "50x50") %>
-  <div class="comment-details">
-    <strong><%= comment.user.username %></strong>
-    <span><%= comment.created_at.strftime("%B %e, %Y at %l:%M %p") %></span>
-    <p><%= comment.body %></p>
-<%= render 'comments/form', commentable: @product, comment: @product.comments.new, parent_comment_id: comment.id, remote: true %>
-    <% if comment.respond_to?(:comments) %>
-      <% comment.comments.each do |child_comment| %>
-        <%= render "comments/comment", comment: child_comment, comment_iteration: comment_iteration + 1 %>
+<div class="comment my-2 d-flex w-100 align-items-start" data-comments-target="list">
+  <%= cl_image_tag comment.user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar"%>
+  <div class="flex-column d-flex ms-3">
+    <div class="d-flex justify-content-start align-items-start mb-1">
+      <span class="my-0 lh-1.25 w-100">
+        <strong><%= comment.user.username %></strong> <%= comment.body %>
+      </span>
+    </div>
+    <div class="d-flex justify-content-start align-items-center flex-wrap mb-2">
+      <span class="small-reply"><%= time_ago_in_words(comment.created_at, include_seconds: false).gsub('about', '').gsub(/minute(s)?\s*/, 'm').gsub(/hour(s)?\s*/, 'h').gsub(/day(s)?\s*/, 'd').gsub(' m', 'm').gsub(' h', 'h').gsub(' d', 'd') %></span>
+      <a href="#!" class="small-reply mx-2">Reply</a>
+      <% if comment.user == current_user %>
+        <a href="#!" class="small-reply">Delete</a>
+      <% end %>
+    </div>
+    <% if comment.replies.present? && controller_name == 'products' && action_name == 'comments' %>
+      <%= render "comments/reply", reply: comment.replies.last %>
+      <%= link_to "View all #{comment.replies.count} replies", comment_replies_product_comment_path(comment.product, comment), class: 'small-reply mx-2' %>
+    <% elsif comment.replies.present? && controller_name == 'comments' && action_name == 'replies' %>
+      <% comment.replies.each do |reply| %>
+        <%= render "comments/reply", reply: reply %>
       <% end %>
     <% end %>
   </div>

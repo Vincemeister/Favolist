@@ -14,10 +14,27 @@ export default class extends Controller {
     this.formTarget.appendChild(form)
   }
 
-  submitForm(event) {
-    const [data, status, xhr] = event.detail
-    const target = document.querySelector(`[data-comments-target="list"] [data-form-target="comments.form"]`)
-    target.insertAdjacentHTML("beforebegin", xhr.response)
-    event.target.reset()
+  async submitForm(event) {
+    event.preventDefault()
+
+    const form = this.formTarget
+    const data = new FormData(form)
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+      },
+      credentials: 'same-origin'
+    })
+
+    if (response.ok) {
+      const commentHTML = await response.text()
+      const container = document.querySelector(".container.bg-white.my-0.py-2")
+      container.insertAdjacentHTML("beforeend", commentHTML)
+      form.reset()
+    } else {
+      console.error('Error submitting comment')
+    }
   }
 }

@@ -7,11 +7,22 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @product, notice: 'Comment was successfully created.'
+      respond_to do |format|
+        format.js { render partial: 'comments/comment', locals: { comment: @comment } }
+      end
     else
-      redirect_to @product, alert: 'Error creating comment.'
+      respond_to do |format|
+        format.js { head :unprocessable_entity }
+      end
     end
   end
+
+
+  def replies
+    @parent_comment = Comment.find(params[:id])
+    @replies = @parent_comment.replies.includes(:user).order(created_at: :desc)
+  end
+
 
   private
 
