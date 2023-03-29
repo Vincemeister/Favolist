@@ -1,9 +1,14 @@
 <div class="product-header d-flex justify-content-start flex-row px-3">
-  <% if params[:action] == "show" && params[:controller] == "products" %>
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-left fa-light text-decoration-none" style="color: #444444;"></i>
-    <% end %>
-  <% end %>
+<% if params[:controller] == "products" && params[:action] == "index" %>
+
+
+<%= link_to  :back %>
+  <i class="fas fa-arrow-left fa-light text-decoration-none" style="color: #444444;"></i>
+<% end %>
+
+
+
+
   <div class="title-and-price mx-auto text-center">
     <% if params[:controller] != "lists" %>
       <%= link_to list_path(product.list), class: "text-decoration-none", style: "color: #444444; font-weight: 100;" do %>

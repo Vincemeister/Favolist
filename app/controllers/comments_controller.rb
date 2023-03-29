@@ -6,9 +6,15 @@ class CommentsController < ApplicationController
     @comment = @product.comments.new(comment_params)
     @comment.user = current_user
 
+    if comment_params[:parent_id].present?
+      partial = 'comments/reply'
+    else
+      partial = 'comments/comment'
+    end
+
     if @comment.save
       respond_to do |format|
-        format.js { render partial: 'comments/comment', locals: { comment: @comment } }
+        format.js { render partial: partial, locals: { comment: @comment } }
       end
     else
       respond_to do |format|

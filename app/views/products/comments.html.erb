@@ -12,10 +12,9 @@
   </div>
 </div>
 
-<%= render 'comments/form', product: @product, comment: Comment.new, parent_comment_id: nil %>
-<div class="container bg-white my-0 py-2">
-<% if false %>
-  <%= render 'comments/form', product: @product, comment: @product.comments.new, parent_comment_id: nil, remote: true %>
-<% end %>
-  <%= render @product.comments.where(parent_comment_id: nil) %>
+<div data-controller="comments">
+  <%= render 'comments/form', product: @product, comment: Comment.new, parent_comment_id: nil, remote: true %>
+  <div class="comments container bg-white my-0 py-2" data-comments-target="comments">
+    <%= render @product.comments.where(parent_comment_id: nil) %>
+  </div>
 </div>
