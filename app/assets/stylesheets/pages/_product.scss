@@ -1,3 +1,9 @@
+.product-show-container {
+  height: calc(100vh - 24px);
+  overflow-y: scroll;
+}
+
+
 .product-tabs {
   color: $my-dark;
   text-decoration: none;
@@ -7,10 +13,12 @@
 }
 
 
+
 .product-content {
   p {
     color: $my-dark;
   }
+  background-color: white;
 }
 
 

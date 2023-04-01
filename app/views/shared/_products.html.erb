@@ -1,4 +1,4 @@
-<div class="container w-100 px-0 bg-white">
+<div class="container product-container w-100 px-0 bg-white" data-controller="comments">
 
   <% products.each do |product| %>
     <%= render "shared/product", product: product, locals: { button_class: 'btn btn-main', link_url: product_path(product), link_label: "Read More"} %>

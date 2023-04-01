@@ -34,3 +34,8 @@
 .navbar-reply {
   background-color: $my-light-gray;
 }
+
+.comments {
+  height: calc(100vh - 24px);
+  overflow-y: scroll;
+}

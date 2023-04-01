@@ -1,3 +1,8 @@
+.product-container {
+  height: calc(100vh - 24px);
+  overflow-y: scroll;
+}
+
 
 .product-info-bar {
   font-weight: 300;

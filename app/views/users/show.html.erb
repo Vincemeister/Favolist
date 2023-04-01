@@ -1,4 +1,4 @@
-<div class="container w-100 bg-white user-container">
+<div class="container w-100 bg-white user-container setParentControllerForBackLinks" data-controller="history-tracker" data-history-tracker-parent-controller-value="user-show">
   <div class="profile-box d-flex flex-col align-content-center justify-content-center w-100 mx-auto bg-white pt-3">
     <%= cl_image_tag @user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", aspect_ratio: "1:1", class: "avatar-xl align-self-center user-img" %>
     <div class="header-text-follow-button w-100 my-1 ml-3">
@@ -39,9 +39,11 @@
       <li class="nav-item" role="presentation">
         <button class="nav-link product-tabs" id="pills-referrals-tab" data-bs-toggle="pill" data-bs-target="#pills-referrals" type="button" role="tab" aria-controls="pills-referrals" aria-selected="false">Referrals</button>
       </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link product-tabs" id="pills-bookmarks-tab" data-bs-toggle="pill" data-bs-target="#pills-bookmarks" type="button" role="tab" aria-controls="pills-bookmarks" aria-selected="false">Bookmarks</button>
-      </li>
+      <% if @user = current_user %>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link product-tabs" id="pills-bookmarks-tab" data-bs-toggle="pill" data-bs-target="#pills-bookmarks" type="button" role="tab" aria-controls="pills-bookmarks" aria-selected="false">Bookmarks</button>
+        </li>
+      <% end %>
 
     </ul>
   </div>
@@ -82,18 +84,17 @@
         <% end %>
     </div>
 
-    <div class="tab-pane fade" id="pills-bookmarks" role="tabpanel" aria-labelledby="pills-bookmarks-tab">
-
-    <% if @user.bookmarked_products.exists?  %>
-<%= render "shared/products", products: @user.bookmarked_products, current_path: request.path %>
-
-    <% else %>
-      <div class="d-flex justify-content-center">
-        <h5 class="text-center">No bookmarks yet</h5>
+    <% if @user == current_user%>
+      <div class="tab-pane fade" id="pills-bookmarks" role="tabpanel" aria-labelledby="pills-bookmarks-tab">
+      <% if @user.bookmarked_products.exists?%>
+        <%= render "shared/products", products: @user.bookmarked_products, current_path: request.path %>
+      <% else %>
+        <div class="d-flex justify-content-center">
+          <h5 class="text-center">No bookmarks yet</h5>
+        </div>
+      <% end %>
       </div>
     <% end %>
-
-    </div>
 
   </div>
 

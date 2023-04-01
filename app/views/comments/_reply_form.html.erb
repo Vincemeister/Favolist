@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-between align-items-center py- px-0 w-100 ">
   <%= cl_image_tag current_user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar-xs me-2"%>
-  <%= form_with(model: [@product, comment], url: product_comments_path(@product), remote: true, local: false, data: { target: "comments.reply-form", action: "submit->comments#submitReply" }, method: :post, class: "comments-form w-100") do |form| %>
+  <%= form_with(model: [@product, comment], url: product_comments_path(@product), remote: true, local: false, data: { target: "comment-and-replies-replyform", action: "submit->comment-and-replies#submitReply" }, method: :post, class: "comments-form w-100") do |form| %>
     <div class="d-flex position-relative form-control comment-input w-100">
       <%= form.text_area :body, rows: 1, placeholder: 'Leave a reply...', class: "comment-textarea" %>
       <%= button_tag type: "submit", class: "comment-submit" do %>

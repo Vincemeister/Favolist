@@ -4,8 +4,14 @@
 
 import { application } from "./application"
 
+import BackLinkController from "./back_link_controller"
+application.register("back-link", BackLinkController)
+
 import BookmarkController from "./bookmark_controller"
 application.register("bookmark", BookmarkController)
+
+import CommentAndRepliesController from "./comment_and_replies_controller"
+application.register("comment-and-replies", CommentAndRepliesController)
 
 import CommentsController from "./comments_controller"
 application.register("comments", CommentsController)
@@ -16,8 +22,17 @@ application.register("controller", ControllerController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import HistoryTrackerController from "./history_tracker_controller"
+application.register("history-tracker", HistoryTrackerController)
+
+import RepliesController from "./replies_controller"
+application.register("replies", RepliesController)
+
 import ShareController from "./share_controller"
 application.register("share", ShareController)
 
 import TetrisBackgroundController from "./tetris_background_controller"
 application.register("tetris-background", TetrisBackgroundController)
+
+import ToggleReplyFormController from "./toggle_reply_form_controller"
+application.register("toggle-reply-form", ToggleReplyFormController)

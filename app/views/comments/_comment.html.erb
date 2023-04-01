@@ -1,4 +1,4 @@
-<div class="comment my-2 d-flex w-100 align-items-start" data-comments-count-value="<%= comment.replies.count %>">
+<div class="comment my-2 d-flex w-100 align-items-start" data-controller="comment-and-replies" data-comment-and-replies-replies-count-value="<%= comment.replies.count %>" data-comment-and-replies-comment-id-value="<%= comment.id %>">
   <%= cl_image_tag comment.user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar"%>
   <div class="flex-column d-flex ms-3">
     <div class="d-flex justify-content-start align-items-start mb-1">
@@ -10,7 +10,7 @@
       <span class="small-reply"><%= time_ago_in_words(comment.created_at, include_seconds: false).gsub('about', '').gsub(/minute(s)?\s*/, 'm').gsub(/hour(s)?\s*/, 'h').gsub(/day(s)?\s*/, 'd').gsub(' m', 'm').gsub(' h', 'h').gsub(' d', 'd') %></span>
 
 
-      <a href="#!" class="small-reply mx-2" data-action="click->comments#toggleReplyForm" data-parent-id="<%= comment.id %>">Reply</a>
+      <a href="#!" class="small-reply mx-2" data-action="click->comment-and-replies#toggleReplyForm">Reply</a>
 
 
 
@@ -20,20 +20,20 @@
     </div>
 
 
-    <div class="reply-form d-none" data-comments-target="reply-form" data-parent-id="<%= comment.id %>">
+    <div class="reply-form d-none" data-comment-and-replies-target="replyformcontainer">
       <%= render 'comments/reply_form', product: @product, comment: Comment.new, parent_comment_id: comment.id, remote: true %>
     </div>
 
 
 
     <% if comment.replies.present? %>
-      <div class="first-reply">
+      <div class="first-reply" data-comment-and-replies-target="firstreply">
         <%= render "comments/reply", reply: comment.replies.last %>
       </div>
-      <div class="small-reply mx-2" data-action="click->comments#toggleReplies" data-comments-target="view-replies-button">
+      <div class="small-reply mx-2" data-action="click->comment-and-replies#toggleReplies" data-comment-and-replies-target="viewrepliesbutton">
         <%="View all #{comment.replies.count} replies" %>
       </div>
-      <div class="replies d-none" data-comments-target="replies">
+      <div class="replies d-none" data-comment-and-replies-target="replies">
         <% comment.replies.each do |reply| %>
           <%= render "comments/reply", reply: reply, comment: comment %>
         <% end %>

@@ -1,4 +1,4 @@
-<div class="reply my-2 d-flex w-100 align-items-start">
+<div class="reply my-2 d-flex w-100 align-items-start" data-comment-and-replies-reply-id-value="<%= reply.id %>">
   <%= cl_image_tag reply.user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar-xs"%>
   <div class="flex-column d-flex ms-3">
     <div class="d-flex justify-content-start align-items-start mb-1">
@@ -8,23 +8,14 @@
     </div>
     <div class="d-flex justify-content-start align-items-center flex-wrap mb-2">
       <span class="small-reply"><%= time_ago_in_words(reply.created_at, include_seconds: false).gsub('about', '').gsub(/minute(s)?\s*/, 'm').gsub(/hour(s)?\s*/, 'h').gsub(/day(s)?\s*/, 'd').gsub(' m', 'm').gsub(' h', 'h').gsub(' d', 'd') %></span>
-
-
-
-
-      <a href="#!" class="small-reply mx-2" data-action="click->comments#toggleReplyForm" data-parent-id="<%= reply.parent_comment_id %>">Reply</a>
-
-
-
-
+      <a href="#!" class="small-reply mx-2" data-action="click->comment-and-replies#toggleReplyForm" %>">Reply</a>
       <% if reply.user == current_user %>
         <a href="#!" class="small-reply">Delete</a>
       <% end %>
     </div>
 
-    <div class="reply-form d-none" data-comments-target="reply-form" data-parent-id="<%= reply.parent_comment_id %>">
+    <div class="reply-form d-none" data-parent-id-value="<%= reply.parent_comment_id %>">
       <%= render 'comments/reply_form', product: @product, comment: Comment.new, parent_comment_id: reply.parent_comment_id, remote: true %>
     </div>
-
   </div>
 </div>

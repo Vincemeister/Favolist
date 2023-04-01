@@ -2,14 +2,19 @@
 <div class="d-flex justify-content-start align-items-center flex-row px-3 mb-2 py-1 bg-white w-100">
   <%= link_to user_path(@list.user) do %>
     <i class="fas fa-arrow-left fa-light text-decoration-none" style="color: #444444;"></i>
+    <%= cl_image_tag @list.user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar"%>
   <% end %>
   <div class="mx-auto text-center">
     <div class="profile-box d-flex align-items-center">
       <div class="d-flex flex-column justify-content-center align-items-start">
+
+
         <h3 class="m-0 p-0"><%= @list.title %></h3>
       </div>
     </div>
   </div>
 </div>
 
-<%= render "shared/products", products: @list.products %>
+<div class="setParentControllerForBackLinks" data-controller="history-tracker" data-history-tracker-parent-controller-value="lists-show">
+  <%= render "shared/products", products: @list.products %>
+</div>

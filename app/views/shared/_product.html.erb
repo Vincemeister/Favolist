@@ -1,10 +1,11 @@
+
 <div class="product-header d-flex justify-content-start flex-row px-3">
-<% if params[:controller] == "products" && params[:action] == "index" %>
 
-
-<%= link_to  :back %>
-  <i class="fas fa-arrow-left fa-light text-decoration-none" style="color: #444444;"></i>
-<% end %>
+  <% if params[:controller] == "products" && params[:action] == "show" %>
+    <%= link_to "", data: {controller: "back-link", back_link_target: "link", back_link_list_value: product.list.id, back_link_user_value: current_user.id} do %>
+      <i class="fas fa-arrow-left fa-light text-decoration-none" style="color: #444444;"></i>
+    <% end %>
+  <% end %>
 
 
 
@@ -63,6 +64,7 @@
     <% else %>
       <%= image_tag "https://unsplash.com/photos/hxi_yRxODNc", crop: :fill, class: "logo container" %>
     <% end %>
+
     <div class="product-icon-buttons d-flex justify-content-center align-items-center">
       <%= link_to product_comments_path(product), class: 'no-style-button' do %>
         <i class="fa-light fa-comment fa-lg"></i>
@@ -71,11 +73,11 @@
       <i class="fa-light fa-square-plus fa-lg px-1"></i>
 
     <% if product.bookmarked_by?(current_user) %>
-      <%= link_to unbookmark_product_path(product), method: :post, class: 'no-style-button', data: { controller: 'bookmark', action: 'click->bookmark#toggle', target: 'bookmark.bookmarkButton' } do %>
+      <%= link_to unbookmark_product_path(product), method: :post, class: 'no-style-button', data: { controller: 'bookmark', action: 'click->bookmark#toggle', bookmark_target: 'bookmarkbutton' } do %>
         <i class="fa-solid fa-circle-bookmark fa-lg"></i>
       <% end %>
     <% else %>
-      <%= link_to bookmark_product_path(product), method: :post, class: 'no-style-button', data: { controller: 'bookmark', action: 'click->bookmark#toggle', target: 'bookmark.bookmarkButton' } do %>
+      <%= link_to bookmark_product_path(product), method: :post, class: 'no-style-button', data: { controller: 'bookmark', action: 'click->bookmark#toggle', bookmark_target: 'bookmarkbutton' } do %>
         <i class="fa-light fa-circle-bookmark fa-lg"></i>
       <% end %>
     <% end %>

@@ -3,14 +3,13 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="bookmark"
 export default class extends Controller {
   connect() {
-    console.log("hello from bookmark controller")
   }
 
-  static targets = ["bookmarkButton"];
+  static targets = ["bookmarkbutton"];
 
   toggle(event) {
     event.preventDefault();
-    const url = this.bookmarkButtonTarget.getAttribute("href");
+    const url = this.bookmarkbuttonTarget.getAttribute("href");
 
     fetch(url, {
       method: "POST",
@@ -29,11 +28,11 @@ export default class extends Controller {
 
   updateButton(data) {
     if (data.action === "bookmark") {
-      this.bookmarkButtonTarget.innerHTML = "<i class='fa-solid fa-circle-bookmark fa-lg'></i>";
-      this.bookmarkButtonTarget.setAttribute("href", data.unbookmark_path);
+      this.bookmarkbuttonTarget.innerHTML = "<i class='fa-solid fa-circle-bookmark fa-lg'></i>";
+      this.bookmarkbuttonTarget.setAttribute("href", data.unbookmark_path);
     } else if (data.action === "unbookmark") {
-      this.bookmarkButtonTarget.innerHTML = "<i class='fa-light fa-circle-bookmark fa-lg'></i>";
-      this.bookmarkButtonTarget.setAttribute("href", data.bookmark_path);
+      this.bookmarkbuttonTarget.innerHTML = "<i class='fa-light fa-circle-bookmark fa-lg'></i>";
+      this.bookmarkbuttonTarget.setAttribute("href", data.bookmark_path);
     }
   }
 }

@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     if params[:query].present?
       @products = Product.search_by_title_and_description_and_list_title_and_user_username(params[:query])
     else
-      @products = Product.where("referrals ILIKE ?", "%FOR THE FEED%").order('RANDOM()')
+      @products = Product.where("referrals ILIKE ?", "%FOR THE FEED%").order(created_at: :desc)
     end
   end
 
