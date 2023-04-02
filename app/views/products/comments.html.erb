@@ -15,9 +15,12 @@
   </div>
 
   <div data-controller="comments">
-    <%= render 'comments/comment_form', product: @product, comment: Comment.new, parent_comment_id: nil, remote: true %>
+    <div class="container navbar-comments d-flex justify-content-between align-items-center py-2 border-bottom ">
+      <%= render 'comments/commentform', product: @product, comment: Comment.new, parent_comment_id: nil, remote: true %>
+    </div>
     <div class="comments container bg-white my-0 py-2" data-comments-target="comments">
       <%= render @product.comments.where(parent_comment_id: nil) %>
     </div>
   </div>
 </div>
+<%= console %>

@@ -6,57 +6,58 @@ export default class extends Controller {
     console.log("hello from comment-and-replies controller")
   };
 
-  static targets = ["replyformcontainer", "replyform", "replies", "viewrepliesbutton", "firstreply"]
-  static values = { repliesCount: Number, commentId: Number }
+  static targets = ["replyform", "replies", "viewrepliesbutton", "firstreply"]
+  static values = { repliescount: String, commentid: String }
 
   toggleReplies(event) {
+    console.log(this.commentidValue)
     event.preventDefault();
     this.repliesTarget.classList.toggle("d-none");
-    this.viewRepliesTarget.classList.toggle("d-none");
-    this.firstReplyTarget.classList.toggle("d-none");
-  };
+    this.firstreplyTarget.classList.toggle("d-none");
+    this.viewrepliesbuttonTarget.innerHTML =
+      this.repliesTarget.classList.contains("d-none")
+        ? `View all ${this.repliescountValue} replies`
+        : `Hide all ${this.repliescountValue} replies`;
+  }
 
   toggleReplyForm(event) {
     event.preventDefault();
     this.replyformTarget.classList.toggle("d-none");
-    console.log(this.replyformTarget);
   };
 
   submitReply(event) {
     event.preventDefault();
-    fetch(this.formTarget.action, {
+
+    fetch(this.replyformTarget.action, {
       method: "POST",
       headers: {
         "Accept": "application/json",
         "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content
       },
-      body: new FormData(this.formTarget)
+      body: new FormData(this.replyformTarget)
     })
     .then(response => response.json())
     .then((data) => {
       if (data.inserted_item) {
         this.repliesTarget.insertAdjacentHTML("beforeend", data.inserted_item)
+        this.firstreplyTarget.insertAdjacentHTML("beforeend", data.inserted_item)
       }
       this.replyformTarget.outerHTML = data.form
     })
     this.toggleReplyForm
+    this.displayFlashMessage("success", "Reply created successfully");
   }
 
-  send(event) {
-    // [...]
 
-    fetch(this.formTarget.action, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: new FormData(this.formTarget)
-    })
-      .then(response => response.json())
-      .then((data) => {
-        if (data.inserted_item) {
-          this.itemsTarget.insertAdjacentHTML("beforeend", data.inserted_item)
-        }
-        this.formTarget.outerHTML = data.form
-      })
+  displayFlashMessage(type, message) {
+    const flashElement = document.createElement("div");
+    flashElement.className = `alert alert-${type} flash`;
+    flashElement.innerText = message;
+    document.body.appendChild(flashElement);
+
+    setTimeout(() => {
+      flashElement.remove();
+    }, 3000);
   }
 
 }

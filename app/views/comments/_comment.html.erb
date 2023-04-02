@@ -1,4 +1,4 @@
-<div class="comment my-2 d-flex w-100 align-items-start" data-controller="comment-and-replies" data-comment-and-replies-replies-count-value="<%= comment.replies.count %>" data-comment-and-replies-comment-id-value="<%= comment.id %>">
+<div class="comment my-2 d-flex w-100 align-items-start" data-controller="comment-and-replies" data-comment-and-replies-repliescount-value="<%= comment.replies.count %>" data-comment-and-replies-commentid-value="<%= comment.id %>">
   <%= cl_image_tag comment.user.avatar.key, crop: "fill", gravity: "center", aspect_ratio: "1:1", class: "avatar"%>
   <div class="flex-column d-flex ms-3">
     <div class="d-flex justify-content-start align-items-start mb-1">
@@ -20,18 +20,18 @@
     </div>
 
 
-    <div class="reply-form d-none" data-comment-and-replies-target="replyformcontainer">
-      <%= render 'comments/reply_form', product: @product, comment: Comment.new, parent_comment_id: comment.id, remote: true %>
-    </div>
+
+<%= render partial: 'comments/replyform', locals: { product: @product, comment: Comment.new, parent_comment_id: comment.id, remote: true } %>
+
 
 
 
     <% if comment.replies.present? %>
-      <div class="first-reply" data-comment-and-replies-target="firstreply">
-        <%= render "comments/reply", reply: comment.replies.last %>
-      </div>
       <div class="small-reply mx-2" data-action="click->comment-and-replies#toggleReplies" data-comment-and-replies-target="viewrepliesbutton">
         <%="View all #{comment.replies.count} replies" %>
+      </div>
+      <div class="first-reply" data-comment-and-replies-target="firstreply">
+        <%= render "comments/reply", reply: comment.replies.last %>
       </div>
       <div class="replies d-none" data-comment-and-replies-target="replies">
         <% comment.replies.each do |reply| %>
