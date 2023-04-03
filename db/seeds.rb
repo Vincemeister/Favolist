@@ -10,6 +10,7 @@ require "open-uri"
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "Cleaning database..."
+Comment.destroy_all
 User.destroy_all
 List.destroy_all
 Product.destroy_all
@@ -77,11 +78,11 @@ puts "Creating random lists and 50 random products for dummy users"
 
 random_users.each do |user|
   # Randomly create between 1 and 15 lists for each user
-  (rand(1..3)).times do
+  (rand(0..3)).times do
     list = List.create(user: user, title: Faker::Lorem.sentence(word_count: 3))
 
     # Randomly create between 1 and 7 products for each list
-    (rand(1..3)).times do
+    (rand(0..3)).times do
       Product.create(list: list, title: Faker::Commerce.product_name, price: Faker::Commerce.price(range: 1..100.0))
     end
   end
@@ -464,26 +465,26 @@ collagen_peptides.photos.attach(io: URI.open(product_url), filename: "product.jp
 
 
 
-athletic_greens = Product.create(
-  list: food_and_health_supplements,
-  title: "Athletic Greens",
-  price: 99,
-  review: "I get asked all the time, “If you could only use one supplement, what would it be?” My answer is usually Athletic Greens, my all-in-one nutritional insurance. I recommended it in The 4-Hour Body in 2010 and did not get paid to do so. I do my best with nutrient-dense meals, of course, but AG further covers my bases with vitamins, minerals, and whole-food-sourced micronutrients that support gut health and the immune system.
+  athletic_greens = Product.create(
+    list: food_and_health_supplements,
+    title: "Athletic Greens",
+    price: 99,
+    review: "I get asked all the time, “If you could only use one supplement, what would it be?” My answer is usually Athletic Greens, my all-in-one nutritional insurance. I recommended it in The 4-Hour Body in 2010 and did not get paid to do so. I do my best with nutrient-dense meals, of course, but AG further covers my bases with vitamins, minerals, and whole-food-sourced micronutrients that support gut health and the immune system.
 
-  Right now, Athletic Greens is offering you their Vitamin D Liquid Formula free with your first subscription purchase—a vital nutrient for a strong immune system and strong bones.",
-  description: "Comprehensive nutrition in one simple scoop. 75 high-quality vitamins, minerals, and whole-food sourced nutrients. Promotes gut health, supports immunity, boosts energy, and more*. Backed by our Scientific Advisory Board.",
-  referrals: "Visit AthleticGreens.com/Tim to claim this special offer today and receive the free Vitamin D Liquid Formula (and five free travel packs) with your first subscription purchase! That’s up to a one-year supply of Vitamin D as added value when you try their delicious and comprehensive all-in-one daily greens product.",
-  )
+    Right now, Athletic Greens is offering you their Vitamin D Liquid Formula free with your first subscription purchase—a vital nutrient for a strong immune system and strong bones.",
+    description: "Comprehensive nutrition in one simple scoop. 75 high-quality vitamins, minerals, and whole-food sourced nutrients. Promotes gut health, supports immunity, boosts energy, and more*. Backed by our Scientific Advisory Board.",
+    referrals: "Visit AthleticGreens.com/Tim to claim this special offer today and receive the free Vitamin D Liquid Formula (and five free travel packs) with your first subscription purchase! That’s up to a one-year supply of Vitamin D as added value when you try their delicious and comprehensive all-in-one daily greens product.",
+    )
 
-  files = [
-  URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942468/favolist/app%20assets/product%20images/tim%20ferris/Athletic%20Greens/Athletic_Greens_jhsubj.jpg")
-  ]
+    files = [
+    URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942468/favolist/app%20assets/product%20images/tim%20ferris/Athletic%20Greens/Athletic_Greens_jhsubj.jpg")
+    ]
 
-  logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942468/favolist/app%20assets/product%20images/tim%20ferris/Athletic%20Greens/Athletic_Greens-logo_h00w1z.png")
+    logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942468/favolist/app%20assets/product%20images/tim%20ferris/Athletic%20Greens/Athletic_Greens-logo_h00w1z.png")
 
-  athletic_greens.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
-  athletic_greens.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
-  athletic_greens.save!
+    athletic_greens.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+    athletic_greens.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+    athletic_greens.save!
 
 
 
@@ -509,72 +510,72 @@ athletic_greens = Product.create(
 
 
 
-    wines = Product.create(
-      list: food_and_health_supplements,
-      title: "Dry Farm Wines",
-      price: 171,
-      review: "I’m a wine drinker, and I love a few glasses over meals with friends. That said, I hate hangovers. For the last few months, all of the wine in my house has been from Dry Farm Wines. Why? At least in my experience, their wine means more fun with fewer headaches. Dry Farm Wines only ships wines that meet very stringent criteria: sugar free (less than 0.15g per glass), lower alcohol (less than 12.5% alcohol), additive free (there are more than 70 FDA-approved wine-making additives), lower sulfites, organic, and produced by small family farms.
+  wines = Product.create(
+    list: food_and_health_supplements,
+    title: "Dry Farm Wines",
+    price: 171,
+    review: "I’m a wine drinker, and I love a few glasses over meals with friends. That said, I hate hangovers. For the last few months, all of the wine in my house has been from Dry Farm Wines. Why? At least in my experience, their wine means more fun with fewer headaches. Dry Farm Wines only ships wines that meet very stringent criteria: sugar free (less than 0.15g per glass), lower alcohol (less than 12.5% alcohol), additive free (there are more than 70 FDA-approved wine-making additives), lower sulfites, organic, and produced by small family farms.
 
-      All Dry Farm Wines are laboratory tested for purity standards by a certified, independent enologist, and all of their wines are also backed by a 100% Happiness Promise—they will either replace or refund any wine you do not love. Last but not least, I find delicious wines I never would have found otherwise. It’s a lot of fun.",
-      description: "At Dry Farm Wines, we source wines according to our uncompromising criteria of farming and purity: ZERO SUGAR, ADDITIVE FREE, LOWER ALCOHOL, ORGANIC FARMING, LOW SULFITES, VEGAN, KETO & PALEO FRIENDLY.",
-      referrals: "Dry Farm Wines has a special offer just for listeners of the podcast—an extra bottle in your first box for just one extra penny. Check out all the details at DryFarmWines.com/Tim.",
-      )
+    All Dry Farm Wines are laboratory tested for purity standards by a certified, independent enologist, and all of their wines are also backed by a 100% Happiness Promise—they will either replace or refund any wine you do not love. Last but not least, I find delicious wines I never would have found otherwise. It’s a lot of fun.",
+    description: "At Dry Farm Wines, we source wines according to our uncompromising criteria of farming and purity: ZERO SUGAR, ADDITIVE FREE, LOWER ALCOHOL, ORGANIC FARMING, LOW SULFITES, VEGAN, KETO & PALEO FRIENDLY.",
+    referrals: "Dry Farm Wines has a special offer just for listeners of the podcast—an extra bottle in your first box for just one extra penny. Check out all the details at DryFarmWines.com/Tim.",
+    )
 
-      files = [
-      URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942969/favolist/app%20assets/product%20images/tim%20ferris/Wines/Wines_mwfxgr.jpg")
-      ]
+    files = [
+    URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942969/favolist/app%20assets/product%20images/tim%20ferris/Wines/Wines_mwfxgr.jpg")
+    ]
 
-      logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942969/favolist/app%20assets/product%20images/tim%20ferris/Wines/Wines-logo_ziqwlv.jpg")
+    logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942969/favolist/app%20assets/product%20images/tim%20ferris/Wines/Wines-logo_ziqwlv.jpg")
 
-      wines.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
-      wines.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
-      wines.save!
-
-
-
-      maui_nui_venison = Product.create(
-        list: food_and_health_supplements,
-        title: "Maui Nui Venison",
-        price: 239.2,
-        review: "I’ve been eating Maui Nui Venison for the past two years, and there’s no going back. My pantry and freezers are full of it, and I restock every month. Why? (1) If I combine Maui Nui Venison with even a little exercise, I drop body fat unbelievably quickly. (2) It tastes delicious and isn’t gamey. (3) Ethically, I feel great about Maui Nui protein, as axis deer are an invasive species on Maui, where their population needs to be managed in order to protect vulnerable ecosystems.
-
-        Harvested using stress-free methods, Maui Nui’s fresh venison is clean-tasting, tender, and one of the most nutrient-dense meats on the planet. Maui Nui is a nearly daily go-to for me, both as a supplement to my daily diet (with broth, jerky snacks, etc.) and through main courses (via their fresh-meat subscription program). I fell in love with this company so much that I ended up investing, which is a rarity.",
-        description: "Don't miss your last chance to join the Maui Nui family as a subscriber. Our new and final iteration of fresh boxes is packed full of a variety of premium cuts, versatile family favorites, and custom add-ons.",
-        referrals: "Tim Ferriss Show listeners can get 15% off on practically everything Maui Nui is offering by visiting MauiNuiVenison.com/Tim! Just use code TIM at checkout. This is the first discount they have done in more than a year, so you are getting something special, folks!"
-        )
-
-        files = [
-        URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942732/favolist/app%20assets/product%20images/tim%20ferris/Maui%20Nui%20Venison/Maui_Nui_Venison_srvxbc.jpg")
-        ]
-
-        logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942731/favolist/app%20assets/product%20images/tim%20ferris/Maui%20Nui%20Venison/Maui_Nui_Venison-logo_zop55v.jpg")
-
-        maui_nui_venison.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
-        maui_nui_venison.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
-        maui_nui_venison.save!
+    wines.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+    wines.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+    wines.save!
 
 
 
-        ucan = Product.create(
-          list: food_and_health_supplements,
-          title: "UCAN",
-          price: 69.95,
-          review: "I was introduced to UCAN and its unique carbohydrate SuperStarch by my good friend—and listener favorite—Dr. Peter Attia, who said there is no carb in the world like it. I have since included it in my routine, using UCAN’s powders to power my workouts, and the bars make great snacks. Extensive scientific research and clinical trials have shown that SuperStarch provides a sustained release of energy to the body without spiking blood sugar. UCAN is the ideal way to source energy from a carbohydrate without the negatives associated with fast carbs, especially sugar.
+  maui_nui_venison = Product.create(
+    list: food_and_health_supplements,
+    title: "Maui Nui Venison",
+    price: 239.2,
+    review: "I’ve been eating Maui Nui Venison for the past two years, and there’s no going back. My pantry and freezers are full of it, and I restock every month. Why? (1) If I combine Maui Nui Venison with even a little exercise, I drop body fat unbelievably quickly. (2) It tastes delicious and isn’t gamey. (3) Ethically, I feel great about Maui Nui protein, as axis deer are an invasive species on Maui, where their population needs to be managed in order to protect vulnerable ecosystems.
 
-          You avoid fatigue, hunger cravings, and loss of focus. Whether you’re an athlete working on managing your fitness or you need healthy, efficient calories to get you through your day, UCAN is an elegant energy solution.",
-          description: "Designed to deliver a steady stream of energy to the mind and body, UCAN Energy Powders allow you to train longer at higher intensities with sustained energy. No sugar. No stimulants. Only clean, crash-free fuel to help you unlock next level performance.",
-          referrals: "My listeners can save 25% on their first UCAN order by going to ucan.co and using promo code TIM. US orders will also be shipped for free.",
-          )
+    Harvested using stress-free methods, Maui Nui’s fresh venison is clean-tasting, tender, and one of the most nutrient-dense meats on the planet. Maui Nui is a nearly daily go-to for me, both as a supplement to my daily diet (with broth, jerky snacks, etc.) and through main courses (via their fresh-meat subscription program). I fell in love with this company so much that I ended up investing, which is a rarity.",
+    description: "Don't miss your last chance to join the Maui Nui family as a subscriber. Our new and final iteration of fresh boxes is packed full of a variety of premium cuts, versatile family favorites, and custom add-ons.",
+    referrals: "Tim Ferriss Show listeners can get 15% off on practically everything Maui Nui is offering by visiting MauiNuiVenison.com/Tim! Just use code TIM at checkout. This is the first discount they have done in more than a year, so you are getting something special, folks!"
+    )
 
-          files = [
-          URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942889/favolist/app%20assets/product%20images/tim%20ferris/UCAN/UCAN_v6ak4t.png")
-          ]
+    files = [
+    URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942732/favolist/app%20assets/product%20images/tim%20ferris/Maui%20Nui%20Venison/Maui_Nui_Venison_srvxbc.jpg")
+    ]
 
-          logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942889/favolist/app%20assets/product%20images/tim%20ferris/UCAN/UCAN-logo_mc0uiy.png")
+    logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942731/favolist/app%20assets/product%20images/tim%20ferris/Maui%20Nui%20Venison/Maui_Nui_Venison-logo_zop55v.jpg")
 
-          ucan.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
-          ucan.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
-          ucan.save!
+    maui_nui_venison.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+    maui_nui_venison.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+    maui_nui_venison.save!
+
+
+
+  ucan = Product.create(
+    list: food_and_health_supplements,
+    title: "UCAN",
+    price: 69.95,
+    review: "I was introduced to UCAN and its unique carbohydrate SuperStarch by my good friend—and listener favorite—Dr. Peter Attia, who said there is no carb in the world like it. I have since included it in my routine, using UCAN’s powders to power my workouts, and the bars make great snacks. Extensive scientific research and clinical trials have shown that SuperStarch provides a sustained release of energy to the body without spiking blood sugar. UCAN is the ideal way to source energy from a carbohydrate without the negatives associated with fast carbs, especially sugar.
+
+    You avoid fatigue, hunger cravings, and loss of focus. Whether you’re an athlete working on managing your fitness or you need healthy, efficient calories to get you through your day, UCAN is an elegant energy solution.",
+    description: "Designed to deliver a steady stream of energy to the mind and body, UCAN Energy Powders allow you to train longer at higher intensities with sustained energy. No sugar. No stimulants. Only clean, crash-free fuel to help you unlock next level performance.",
+    referrals: "My listeners can save 25% on their first UCAN order by going to ucan.co and using promo code TIM. US orders will also be shipped for free.",
+    )
+
+    files = [
+    URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942889/favolist/app%20assets/product%20images/tim%20ferris/UCAN/UCAN_v6ak4t.png")
+    ]
+
+    logo = URI.open("https://res.cloudinary.com/dncij7vr6/image/upload/v1678942889/favolist/app%20assets/product%20images/tim%20ferris/UCAN/UCAN-logo_mc0uiy.png")
+
+    ucan.photos.attach(files.map { |f| { io: f, filename: "image.jpg", content_type: "image/jpg" } })
+    ucan.logo.attach(io: logo, filename: "image.jpg", content_type: "image/jpg")
+    ucan.save!
 
 
 
@@ -609,7 +610,7 @@ osprey_farpoint.save!
 
 #Nomatic Backpack
 nomatic = Product.create(
-  list: on_the_road_list,
+  list: travel_gear,
   title: "NOMATIC Backpack",
   price: 250,
   review: "Stylish af bag I take with me every day.

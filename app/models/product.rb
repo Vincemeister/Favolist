@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_by, through: :bookmarks, source: :user
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
 
   pg_search_scope :search_by_title_and_description_and_list_title_and_user_username,
