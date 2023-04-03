@@ -287,7 +287,7 @@ manta.save!
 
 #Baubax Travel Jacket 3.0
 baubax = Product.create(
-  list: apparel,
+  list: functional_apparel,
   title: "Baubax Travel Jacket 3.0",
   price: 120,
   review: "I love this jacket. It’s so comfortable and has so many pockets. I love the fact that it has an infinite number of pockets.
